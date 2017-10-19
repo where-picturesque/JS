@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>唯品会网站登录</title>
+		<link rel="stylesheet" href="css/login.css" />
+	</head>
+
+	<body>
+		<div id="main" class="margin">
+			<div id="header" class="clear">
+				<a href="index.html" class="logo"></a>
+				<div class="promise"></div>
+			</div>
+			<div id="content" class="clear">
+				<div class="content-r">
+					<div class="login">
+						<p class="login-top clear">如有账号，请登录</p>
+						<form class="loginForm" method="post" action="php/login.php">
+
+							<div class="username div-input">
+								<input type="text" class="username-inp" name="username" placeholder="手机号/用户名/邮箱" autocomplete="off">
+								<p class="error"></p>
+							</div>
+							<div class="password div-input">
+								<input type="password" class="password-inp" name="password" placeholder="密码" autocomplete="off">
+								<p class="error"></p>
+
+							</div>
+							<p class="pwderror"></p>
+							<input type="button" class="login-btn" value="登录" name="submit" />
+
+						</form>
+						<div class="login-ft clear">
+							<div class="mem-pwd">
+								<span class="agree-icon"></span>
+								<label for="agree-icon" class="agree-txt">记住用户名</label>
+							</div>
+							<div class="login-ft-r">
+								<a href="#" class="forgetpwd">忘记密码?</a>
+								<span>|</span>
+								<a href="register.html" class="toreg">免费注册</a>
+							</div>
+						</div>
+
+					</div>
+					<div class="cooperation">
+						<p class="cooperation-txt">合作网站账号登录：</p>
+						<p class="cooperation-icon">
+
+							<a href="#"  title="新浪微博" class="icon-sina icon" ></a>
+							<a href="#"  title="QQ" class="icon-qq icon" ></a>
+							<a href="#"  title="支付宝" class="icon-alipay icon" ></a>
+							<a href="#"  title="微信" class="icon-wechat icon"></a>
+							<a href="javascript:void(0);"  class="more" >更多<i class="arrow"></i></a>
+						</p>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+		<div class="footer">
+			<div class="copyright">Copyright 2008-2017 vip.com，All Rights Reserved ICP证：粤 B2-20080329</div>
+		</div>
+		<script src="js/require.js" data-main="js/login-main.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+
+</html>

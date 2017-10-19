@@ -1,0 +1,218 @@
+@import "font";
+@import "public";
+$maincolor:#f10180;
+.margin {
+    width: 1000px;
+    margin: 40px auto;
+}
+
+#main {
+    color: #4c4c4c;
+}
+
+body {
+    background-color: #fdfbfe;
+}
+
+#header {
+    padding-bottom: 44px;
+    .logo {
+        float: left;
+        width: 315px;
+        height: 73px;
+        background: url(../images/normalLogin_sprite.png) no-repeat 0 0!important;
+    }
+    .promise {
+        float: right;
+        width: 445px;
+        height: 28px;
+        background-position: 0 -68px;
+        margin-top: 25px;
+        background-image: url(../images/sprite1.png);
+        background-position: -317px 0px;
+        background-repeat: no-repeat;
+    }
+}
+
+#content {
+    width: 1000px;
+    height: 600px;
+    background: url(../images/14906736174487.jpg) no-repeat 0 0;
+    .reg {
+        float: right;
+        width: 274px;
+        padding-top: 40px;
+        padding-right: 100px;
+    }
+    .reg-top {
+        font: 14px/16px "";
+        margin-bottom: 20px;
+        .welcome-reg {
+            float: left;
+        }
+        .reged {
+            float: right;
+            font-size: 12px;
+            a {
+                color: $maincolor;
+            }
+        }
+    }
+    .regForm {
+        div {
+            margin-bottom: 25px;
+            position: relative;
+        }
+        input {
+            height: 18px;
+            line-height: 18px;
+            padding: 6px 10px;
+            width: 248px;
+            color: #333;
+            background-color: #fff;
+            border: 1px solid #b2b2b2;
+            border-radius: 3px;
+            outline: 0;
+            position: relative;
+        }
+        .input-warning {
+            border-color: #fca1a5;
+            background-color: #ffe6e7;
+        }
+        .error {
+            display: none;
+            position: absolute;
+            z-index: 99;
+            bottom: 120%;
+            max-width: 800px;
+            border-radius: 2px;
+            box-shadow: 0 0 3px rgba(0, 0, 0, .1);
+            font: 12px/20px "";
+            color: #4d4d4d;
+            border-color: #91daf2;
+            box-shadow: none;
+            padding: 5px 14px;
+        }
+        .notice {
+            @extend .error;
+            background: #e7f9ff;
+            border: 1px solid #91daf2;
+        }
+        .warning {
+            @extend .error;
+            background: #fffaf3;
+            border: 1px solid #f8dbb1;
+            font: 12px/16px "";
+            i {
+                color: #f9a129;
+                margin-right: 8px;
+            }
+        }
+        .i-if-success {
+            display: none;
+            position: absolute;
+            right: 5px;
+            top: 1px;
+            z-index: 2;
+            padding-right: 10px;
+            padding-left: 5px;
+            line-height: 30px;
+            font-size: 17px;
+            background: #fff;
+            border-radius: 3px;
+            color: #47b85c;
+        }
+        .pwd-level {
+            display: none;
+            position: absolute;
+            top: 32px;
+            .pwd-level-color {
+                color: #a3a3a3;
+                display: inline-block;
+                text-align: center;
+                width: 30px;
+                height: 10px;
+                background-color: #d4d4d2;
+            }
+        }
+        .checkcode {
+            input {
+                width: 110px;
+            }
+            .i-if-success {
+                right: 143px;
+            }
+            .createcode {
+                display:inline-block ;
+                border: 1px solid #d0d0d0;
+                color: #999;
+                background: #d0d0d0;
+                cursor: pointer;
+                margin-left: 13px;
+                font-size: 16px;
+                padding:2px 12px;
+                width: 93px;
+                text-align: center;
+            }
+        }
+        .toreg {
+            margin-bottom: 30px;
+            overflow: hidden;
+            .reg-btn {
+                float: left;
+                width: 140px;
+                height: 40px;
+                font-size: 16px;
+                background: $maincolor;
+                border: 1px solid $maincolor;
+                border-radius: 3px;
+                text-align: center;
+                color: #FFFFFF;
+            }
+            .email-reg {
+                float: left;
+                margin: 20px 0 0 35px;
+                padding-right: 16px;
+                display: inline-block;
+                color: #1d94d1;
+                height: 12px;
+                font-size: 12px;
+                background: url(../images/blue-arrow.png) no-repeat right bottom;
+                cursor: pointer;
+            }
+        }
+        .agree {
+            width: 344px;
+            font: 12px/32px"";
+            .agree-icon {
+                display: inline-block;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                background-image: url(../images/sprite.png);
+                background-position: -48px 0;
+                width: 19px;
+                height: 16px;
+                vertical-align: middle;
+            }
+            .agree-icon:hover {
+                background-position: -24px -21px;
+            }
+            .agree-icon.checkagree {
+                background-position: -24px 0;
+            }
+            .agree-txt {
+                a {
+                    color: $maincolor;
+                }
+            }
+        }
+    }
+}
+.copyright {
+    text-align: center;
+    color: #767074;
+    font-size: 12px;
+    margin-bottom: 20px;
+}

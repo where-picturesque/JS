@@ -1,0 +1,51 @@
+@font-face {
+    font-family: vipIndexFont;
+    src: url(../font/vipIndexFont.eot?6e086118);
+    src: url(../font/vipIndexFont.eot?6e086118?#iefix) format('embedded-opentype'), url(../font/vipIndexFont.svg?394d488d#vipIndexFont) format('svg'), url(../font/vipIndexFont.woff?19960889) format('woff'), url(../font/vipIndexFont.ttf?25d218e7) format('truetype');
+    font-weight: 400;
+    font-style: normal
+}
+@font-face {
+    font-family: vipSidebarFont;
+    src: url(../font/vipSidebarFont.eot?0fc9cc76);
+    src: url(../font/vipSidebarFont.eot?0fc9cc76?#iefix) format('embedded-opentype'), 
+    url(../font/vipSidebarFont.svg?c5976bfb#vipSidebarFont) format('svg'), 
+    url(../font/vipSidebarFont.woff?07f56b47) format('woff'), 
+    url(../font/vipSidebarFont.ttf?1d3ce713) format('truetype');
+    font-weight: 400;
+    font-style: normal
+}
+
+
+@font-face {
+    font-family: vipFont;
+    src: url(../font/vipFont.eot?4090b14c);
+    src: url(../font/vipFont.eot?4090b14c?#iefix) format('embedded-opentype'), url(../font/vipFont.svg?01def549#vipFont) format('svg'), url(../font/vipFont.woff?da200a23) format('woff'), url(../font/vipFont.ttf?dfd6e085) format('truetype');
+    font-weight: 400;
+    font-style: normal
+}
+.vipIndexFont {
+    font-family: vipIndexFont;
+    font-size: 20px;
+    line-height: 20px
+}
+.vipFont {
+    font-family: vipFont !important;
+    speak: none;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+
+
+.vipSidebarFont {
+    font-family: vipSidebarFont;
+    font-size: 24px;
+    line-height: 18px;
+    color: #fff
+}
