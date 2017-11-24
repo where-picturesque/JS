@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/bootstrap/css/bootstrap.css' />
+    <style>
+    .container{
+      width: 500px;
+    }
+      .logo{
+        text-align: center;
+      }
+      .logo img{
+        width: 80px;
+      }
+      .empty{
+        width: 250px;
+        font-size: 16px;
+        text-align: center;
+        margin:0 auto;
+      }
+    </style>
+  </head>
+  <body>
+    <%-include("./header.ejs",{title:"新建分类",add:false,addgood:true,isshow:true,showlogin:false,hasshop:false,showreg:false,showlogout:true,showuser:true})%>
+	 
+    <div class="container">
+      <form method="post" action="/addgoods/category">
+        <div class="form-group">
+          <b>店铺名：</b>
+          <b><%=curshop.shopname%></b>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">类型名</label>
+          <input type="text" class="form-control" id="exampleInputPassword1" placeholder="类型名" name="type">
+        </div>
+        <%if(showerror){%>
+        <p class="error">该分类已存在</p>
+        <%}%>
+        <input type="hidden" value="<%=curshop._id%>" name="shopid">
+        <button type="submit" class="btn btn-default">创建</button>
+      </form>
+
+    </div>
+
+	
+
+    <script src="/bootstrap/js/jquery-1.11.0.js"></script>
+    <script src="/bootstrap/js/bootstrap.js"></script>
+  </body>
+</html>

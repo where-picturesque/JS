@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/bootstrap/css/bootstrap.css' />
+    <style>
+      .logo{
+        text-align: center;
+      }
+      .logo img{
+        width: 80px;
+      }
+      .empty{
+        width: 250px;
+        font-size: 16px;
+        text-align: center;
+        margin:0 auto;
+      }
+    </style>
+  </head>
+  <body>
+    <%-include("./header.ejs",{title:"店铺商品后台管理系统",add:true,addgood:true,isshow:true,showlogin:false,showreg:false,showlogout:true,showuser:true})%>
+	 
+    <div class="container">
+      <table class="table table-bordered">
+            <thead>
+              <tr>
+               <th>店铺图标</th>
+               <th>店铺名称</th>
+               <th>店铺地址</th>
+               <th>类型</th>
+               <th>商品数量</th>
+               <th>操作</th>
+              </tr>
+            </thead>
+            <tbody>
+             <% for(var i=0;i<shopnames.length;i++){%>
+                <tr>
+                  <td class="logo">
+                    <a href="/shop?shopid=<%=shopnames[i]._id%>"><img src="/images/shop/<%=shopnames[i].shopimages%>"alt="..." /></a>
+                  </td>
+                  <td><a href="/shop?shopid=<%=shopnames[i]._id%>"><%=shopnames[i].shopname%></a></td>
+                 <td><%=shopnames[i].address%></td>
+                 <td><%=shopnames[i].shoptype%></td>
+                 <td><%=goodnum[i]%></td>
+                  
+                  <td>
+                    <a href="/shop/update?shopid=<%=shopnames[i]._id%>" class="btn btn-default">修改店铺信息</a>
+                    <a href="/shop/delete?shopid=<%=shopnames[i]._id%>" class="btn btn-danger">注销店铺</a>
+                  </td>
+                </tr>
+
+             <%}%>
+            </tbody>
+          </table>
+
+          <%if(shopnames.length==0){%>
+          <div class="empty">
+            <img src="/images/others/1.png">
+            <p>空空如也，快去创建店铺吧！</p>
+          </div>
+          <%}%>
+    </div>
+
+	
+
+    <script src="/bootstrap/js/jquery-1.11.0.js"></script>
+    <script src="/bootstrap/js/bootstrap.js"></script>
+  </body>
+</html>

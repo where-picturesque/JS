@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/bootstrap/css/bootstrap.css' />
+    <style>
+    .container{
+      position: relative;
+    }
+      .table{
+
+        /*margin-left: 80px;*/
+      }
+      .img{
+        text-align: center;
+      }
+      .img img{
+        width: 80px;
+
+      }
+      .id{
+        width: 150px;
+      }
+      .over{
+        width: 200px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .btn-grey{
+        background-color: lightgrey;
+        color: black;
+      }
+      .side{
+        position: fixed;
+        left: 20px;
+        top: 100px;
+      }
+      div.dropdown-toggle{
+        margin-bottom: 0px;
+      }
+      .empty{
+        width: 250px;
+        font-size: 16px;
+        text-align: center;
+        margin:0 auto;
+      }
+      .category{
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <%-include("./header.ejs",{title:"店铺商品后台管理系统",add:true,addgood:true,isshow:true,showlogin:false,showreg:false,showlogout:true,showuser:true})%>
+	 
+    
+    <div class="container">
+      <div class="side ">
+        <ul class="list-group">
+          <li class="list-group-item">
+            <a href="/shop/showsale?shopid=<%=curshop._id%>&on=1">
+             已上架
+            <span class="badge"><%=onsalecount%></span>
+          </a>
+          </li>
+          <li class="list-group-item">
+            <a href="/shop/showsale?shopid=<%=curshop._id%>&on=0">
+            未上架
+            <span class="badge"><%=totalcount-onsalecount%></span>
+          </a>
+          </li>
+        </ul>
+      </div>
+      <table class="table table-bordered">
+            <thead>
+              <tr>
+              
+                <th>商品图片</th>
+                <th>名称</th>
+                <th>价格</th>
+                <th class="dropdown">
+                    <div class="category dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    类型
+                    <span class="caret"></span>
+                    </div>
+                    <ul class="dropdown-menu">
+                      <%for(var i=0;i<category.length;i++){%>
+                        <li><a href="/shop/category?shopid=<%=curshop._id%>&type=<%=category[i]%>"><%=category[i]%></a></li>
+                      <%}%>
+                    </ul>
+                    
+              </th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody>
+             <% for(var i=0;i<goodresult.length;i++){%>
+                <tr>
+                  
+                  <td class="img">
+                    <a href="/shop/detail?goodid=<%=goodresult[i]._id%>&shopid=<%=curshop._id%>"><img src="/images/<%=JSON.parse(goodresult[i].filename)[0]%>" alt="..."/></a>
+                    
+                  </td>
+                  <td class="over"><a href="/shop/detail?goodid=<%=goodresult[i]._id%>&shopid=<%=curshop._id%>"><%=goodresult[i].title%></a></td>
+                  <td><%=goodresult[i].price%></td>
+                  <td > <%=goodresult[i].type%></td>
+                  <td>
+                    
+                    <a class="btn btn-default" href="/addgoods/update?goodid=<%=goodresult[i]._id%>&shopid=<%=curshop._id%>">更新</a>
+                    <%if(goodresult[i].status==true){%>
+                      <a class="btn btn-grey" href="/shop/offsale?goodid=<%=goodresult[i]._id%>&shopid=<%=curshop._id%>">下架</a>
+                    <%}else{%>
+                      <a class="btn btn-default" href="/shop/onsale?goodid=<%=goodresult[i]._id%>&shopid=<%=curshop._id%>">上架</a>
+                    <%}%>
+                    <a class="btn btn-danger" href="/shop/del?goodid=<%=goodresult[i]._id%>&shopid=<%=curshop._id%>">删除</a></td>
+                </tr>
+
+             <%}%>
+            </tbody>
+          </table>
+          <%if(goodresult.length==0){%>
+          <div class="empty">
+            <img src="/images/others/1.png">
+            <p>空空如也，快去上传宝贝吧！</p>
+          </div>
+          <%}%>
+    </div>
+
+	
+
+    <script src="/bootstrap/js/jquery-1.11.0.js"></script>
+    <script src="/bootstrap/js/bootstrap.js"></script>
+  </body>
+</html>

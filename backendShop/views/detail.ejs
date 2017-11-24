@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/bootstrap/css/bootstrap.css' />
+    <style>
+      td img{
+        width: 80px;
+
+      }
+      .id{
+        width: 150px;
+      }
+      .over{
+        width: 200px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .left-images{
+        width: 300px;
+        text-align: center;
+      }
+      td img{
+        width: 200px;
+
+      }
+    </style>
+  </head>
+  <body>
+    <%-include("./header.ejs",{title:"店铺商品后台管理系统",add:false,addgood:true,isshow:true,showlogin:false,showreg:false,showlogout:true,showuser:true})%>
+	 
+    <div class="container">
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+
+            <td rowspan="8" class="left-images"><img src="http://localhost:3000/images/<%=JSON.parse(goodresult.filename)[0]%>" alt="..."/></td>
+            <td>编号：<%=goodresult._id%></td>
+
+          </tr>
+          
+          <tr>
+            <td>名称：<%=goodresult.title%></td>
+          </tr>
+          <tr>
+            <td>价格：<%=goodresult.price%></td>
+          </tr>
+          <tr>
+            <td>类型：<%=goodresult.type%></td>
+          </tr>
+          <tr>
+            <td>数量：<%=goodresult.num%></td>
+          </tr>
+          <tr>
+            <td>描述：<%=goodresult.description%></td>
+          </tr>
+          <tr>
+            <td>状态：<%if(goodresult.status==true){%>
+              已上架
+              <%}else{%>
+              已下架
+              <%}%>
+                
+              </td>
+          </tr>
+          <tr>
+            <td>尺码：<%=goodresult.size%></td>
+          </tr>
+         
+          <tr>
+            <td colspan="2">
+              <%
+                var filenames=JSON.parse(goodresult.filename);
+              for(var i=0;i<filenames.length;i++){%>
+                <img src="http://localhost:3000/images/<%=filenames[i]%>"/>
+              <%}%>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+        
+    </div>
+
+	
+
+    <script src="/bootstrap/js/jquery-1.11.0.js"></script>
+    <script src="/bootstrap/js/bootstrap.js"></script>
+  </body>
+</html>
