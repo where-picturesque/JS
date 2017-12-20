@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		#box{
+			width: 560px;
+			height: 305px;
+			margin: 20px auto;
+			position: relative;
+			overflow: hidden;
+		}
+		#box ul{
+			display: flex;
+			position: absolute;
+		}
+		#box ul li img{
+			width: 560px;
+			height: 305px;
+			display: block;
+		}
+		#box ol{
+			position: absolute;
+			left: 50%;
+			margin-left: -65px;
+			bottom: 20px;
+
+		}
+		#box ol li{
+			width: 10px;
+			height: 10px;
+			margin-right:5px;
+			border-radius: 50%;
+			background: lightblue;
+			float: left;
+		}
+		#box ol li.active{
+			background: red;
+		}
+		#box p{
+			font-size: 60px;
+			color: #fff;
+			position:absolute;
+			top: 50%;
+			margin-top:-30px;
+			display: none;
+			cursor: pointer;
+		}
+		#left{
+			left: 20px;
+
+		}
+		#right{
+			right: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<ul>
+			<li style="opacity: 1;"><img src="https://imgsa.baidu.com/news/crop%3D3%2C1%2C751%2C388/sign=4c48ab194036acaf4dafccbc41eaa121/a044ad345982b2b75705d1e43aadcbef76099b7c.jpg"></li>
+			<li><img src="https://imgsa.baidu.com/news/q%3D100/sign=ab1a75dbac86c9170e035639f93c70c6/c995d143ad4bd1134d20261151afa40f4bfb0527.jpg"></li>
+			<li><img src="https://imgsa.baidu.com/news/q%3D100/sign=99b55a13b1a1cd1103b676208912c8b0/aa64034f78f0f736ceaaf2220155b319ebc413b8.jpg"></li>
+			<li><img src="https://imgsa.baidu.com/news/q%3D100/sign=bed91ffdfb1f3a295cc8d1cea924bce3/cc11728b4710b912fa7148ddc8fdfc0392452264.jpg"></li>
+			<li><img src="https://imgsa.baidu.com/news/q%3D100/sign=ce664d9bdf3f8794d5ff4c2ee21b0ead/8326cffc1e178a82e522d183fd03738da977e8f3.jpg"></li>
+			<li><img src="https://imgsa.baidu.com/news/q%3D100/sign=cdc2b31e12d8bc3ec00802cab28ba6c8/5366d0160924ab183668e7133efae6cd7b890b93.jpg"></li>
+			<li><img src="https://imgsa.baidu.com/news/q%3D100/sign=52760d0b3d7adab43bd01f43bbd4b36b/91529822720e0cf37da5f0d80146f21fbe09aa47.jpg"></li>
+			<li><img src="https://imgsa.baidu.com/news/q%3D100/sign=bd21672638fa828bd72399e3cd1f41cd/aa18972bd40735fae7d2ad9a95510fb30f2408f6.jpg"></li>
+		</ul>
+		<ol>
+			<li class="active" ></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ol>
+		<p id="left">&lt;</p>
+		<p id="right">&gt;</p>
+	</div>
+	<script type="text/javascript" src="move.js"></script>
+	<script type="text/javascript">
+		var box=document.getElementById("box")
+		var ul=document.getElementsByTagName("ul")[0]
+		var ol=document.getElementsByTagName("ol")[0]
+		var aImgLi=ul.getElementsByTagName("li")
+		var aImg=ul.getElementsByTagName("img")
+		var aBtns=ol.getElementsByTagName("li")
+		var toleft=document.getElementById("left")
+		var toright=document.getElementById("right")
+		var perImgWidth=parseInt(getStyle(aImg[0],"width"))
+		var num=0
+		var sign=true
+		var timer=null;
+		console.log(perImgWidth)
+
+
+		// 克隆第一个，最后一个节点及内容
+		var firstImg=aImgLi[aImgLi.length-1].cloneNode(true)
+		var lastImg=aImgLi[0].cloneNode(true)
+		ul.appendChild(lastImg)
+		ul.insertBefore(firstImg,aImgLi[0])
+
+		ul.style.left=-perImgWidth+"px"
+
+		// 左右箭头出现
+		box.onmouseover=function(){
+			toleft.style.display="block"
+			toright.style.display="block"
+			clearInterval(timer)
+		}
+		// 左右箭头消失
+		box.onmouseout=function(){
+			toleft.style.display="none"
+			toright.style.display="none"
+			timer=setInterval(function(){
+				toright.onclick()
+			},1000)
+			
+		}
+
+		// 小圆点滑过变换图片
+		for (var i = 0; i < aBtns.length; i++) {
+			aBtns[i].index=i
+			aBtns[i].onclick=function(e){
+				if(sign){
+					sign=false
+					num = this.index
+					lunbo()
+					
+				}
+				
+
+			}
+		}
+		function lunbo(){
+			for (var j = 0; j < aBtns.length; j++) {
+					aBtns[j].className=""
+			}
+			if (num>=aBtns.length) {
+				bufferMove(ul,{"left":-perImgWidth*(num+1)},function(){
+					ul.style.left=-perImgWidth+"px"
+					
+				})				
+				num=0				
+			}else if (num<0) {		
+				bufferMove(ul,{"left":-perImgWidth*(num+1)},function(){
+					ul.style.left=-perImgWidth*(aBtns.length)+"px"
+					
+				})				
+				num=aBtns.length-1			
+			}else{
+				bufferMove(ul,{"left":-perImgWidth*(num+1)})
+				
+			}
+			sign=true;
+			
+
+			/*bufferMove(ul,{"left":-perImgWidth*(num+1)},function(){
+				if (num<0) {
+					ul.style.left=-perImgWidth*(aBtns.length)+"px"
+					num=aBtns.length-1//num在第一个运动完成后设置，会影响后面的classname设置
+				}
+				if(num>=aBtns.length){//num>最后一个小圆点的下标	，最终要显示第一个小圆点对应图片	
+					ul.style.left=-perImgWidth+"px"//先把ul运动到最后一张，再迅速切换到第二张
+					num=0
+				}
+				sign=true
+				document.title=num
+			})	*/
+			console.log(num)			
+			 aBtns[num].className="active"			
+		}
+				
+		
+
+		// 右键点击改变图片
+		toright.onclick=function(e){
+			if (sign) {
+				sign=false
+				num++			
+				/*if (num>=aBtns.length) {
+					bufferMove(ul,{"left":-perImgWidth*(num+1)},function(){
+						ul.style.left=-perImgWidth+"px"
+					})				
+					num=0				
+				}else{
+					bufferMove(ul,{"left":-perImgWidth*(num+1)})
+				}*/
+				
+				lunbo()
+				/*if (num>=aBtns.length) {
+					num=0
+				}
+				aBtns[num].className="active"			
+*/
+			}
+			
+		}
+
+		toleft.onclick=function(e){
+			if (sign) {
+				sign=false
+				num--			
+				/*if (num<0) {		
+					bufferMove(ul,{"left":-perImgWidth*(num+1)},function(){
+						ul.style.left=-perImgWidth*(aBtns.length)+"px"
+					})				
+					num=aBtns.length-1			
+				}else{
+					bufferMove(ul,{"left":-perImgWidth*(num+1)})
+				}*/
+				
+				lunbo()
+				/*if (num<0) {
+					num=aBtns.length-1
+				}
+				aBtns[num].className="active"*/			
+
+			}			
+		}
+
+	timer=setInterval(function(){
+		toright.onclick()
+	},1000)
+	</script>
+
+</body>
+</html>

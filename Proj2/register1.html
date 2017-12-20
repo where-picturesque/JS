@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/register.css">
+		<link href="css/jquery.idcode.css" type="text/css" rel="stylesheet">
+	</head>
+	<body>
+		<div id="main" class="margin">
+			<div id="header">
+				<a href="index.html" class="logo"></a>
+				<div class="promise"></div>
+			</div>
+			<div id="content">
+				<div class="reg">
+					<div class="reg-top">
+						<span class="welcome-reg">欢迎注册</span>
+						<span class="reged">已注册可<a href="login.html">直接登录</a></span>
+					</div>
+					<div class="regForm">
+						<div class="phone">
+							<input type="number" class="phone-inp" name="phonenum" placeholder="请输入手机号码">
+							<p class="notice">请输入您的11位手机号码</p>
+							<p class="warning">
+								<i class="vipFont if-sigh"></i>手机号不能为空
+							</p>
+						</div>
+						<div class="password">
+							<input type="text" class="password-inp" name="password" placeholder="密码由6-20位字母，数字和符号组合">
+							<p class="notice">密码由6-20位字母，数字和符号至少两种以上字符组合，区分大小写
+							</p>
+							<p class="warning">
+								<i class="vipFont if-sigh"></i>密码不能为空
+							</p>
+						</div>
+						<div class="checkpwd">
+							<input type="" name="checkpwd" placeholder="请再次输入上面的密码" class="checkpwd-inp">
+							<p class="notice"></p>
+							<p class="warning">
+								<i class="vipFont if-sigh"></i>
+								请输入确认密码
+							</p>
+						</div>
+						<div class="checkcode">
+							<input type="text" id ="Txtidcode" class ="txtVerification">
+							<button id="idcode"></button>
+						</div>
+						<div class="toreg">
+							<a href="#" class="reg-btn">立即注册</a>
+							<a class="email-reg">通过邮箱注册 >></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

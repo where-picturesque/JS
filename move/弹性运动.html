@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		.box{
+			width: 100px;
+			height: 100px;
+			background: red;
+			border-radius: 50%;
+			position: absolute;
+			left:0;
+		}
+	</style>
+</head>
+<body>
+	<div class="box"></div>
+	<script type="text/javascript">
+	var speed=0
+		var box=document.querySelector(".box")
+		var timer=setInterval(function(){
+			
+			speed+=(600-box.offsetLeft)/5
+			if (Math.abs(speed)<1) {
+				speed=0
+				box.offsetLeft=600
+				clearInterval(timer)
+			}
+			console.log(speed)
+
+			box.style.left=box.offsetLeft+speed+"px"
+		},50)
+	</script>
+</body>
+</html>

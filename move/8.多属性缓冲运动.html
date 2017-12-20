@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		.box{
+			width: 100px;
+			height: 100px;
+			background: red;
+		}
+	</style>
+</head>
+<body>
+	<div class="box"></div>
+	<script type="text/javascript">
+		var box=document.querySelector(".box")
+		var timer
+		box.onmouseover=function(){
+			bufferMove(box,{width:500,height:300})
+		}
+		box.onmouseout=function(){
+			bufferMove(box,{width:100,height:100})
+		}
+		function getStyle(obj,attr){
+			if (obj.currentStyle) {
+				return obj.currentStyle[attr]
+			}else{
+				return getComputedStyle(obj)[attr]
+			}
+		}
+		function bufferMove(obj,json,fn){
+			clearInterval(obj.timer)
+			obj.timer=setInterval(function(){
+				var bstop=true;//每隔50秒重置bstop
+				for(attr in json){//attr:属性    json[attr]:目标值属性值
+					var current
+					if (attr=="opacity") {
+						current=Math.round(getStyle(obj,attr)*100)
+					}else{
+						current=parseInt(getStyle(obj,attr))
+					}
+					var speed
+					speed=(json[attr]-current)/5
+					speed=speed>0?Math.ceil(speed):Math.floor(speed)
+					if (json[attr]!=current) {//如果任何一个属性没到达目标点，则继续运动,完成则bstop为true
+						if (attr=="opacity") {
+						obj.style.opacity=(current+speed)/100
+						obj.style.filter="alpha(opacity="+current+speed+")"
+						}else{
+							obj.style[attr]=current+speed+"px"
+						}
+						bstop=false;//不会关闭自身定时器开启下一个链式运动
+					}
+					
+				}
+				if (bstop) {//当前一个运动所有属性都到达目标，关闭定时器，开始下一个链式运动
+					clearInterval(obj.timer)
+					fn&&fn();
+				}
+						
+			},50)
+		}
+	</script>
+
+</body>
+</html>

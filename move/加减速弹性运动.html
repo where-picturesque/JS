@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		#box{
+			width: 100px;
+			height: 100px;
+			background: red;
+			border-radius: 50%;
+			position: absolute;
+
+		}
+		#line{
+			position: absolute;
+			width: 1px;
+			height: 400px;
+			background: black;
+			left: 400px
+		}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+	<div id="line"></div>
+	<script>
+	var box=document.getElementById("box")
+	var speed=0
+	box.onmouseover=function(){
+		var timer=setInterval(function(){						
+			speed+=(400-box.offsetLeft)/5
+			speed=Math.ceil(speed*.9)
+			var left1=box.offsetLeft+speed
+			if (left1==400) {
+				clearInterval(timer)
+				console.log("清除定时器")
+			}
+			box.style.left=left1+"px"
+		},50)
+	}
+
+	</script>
+</body>
+</html>

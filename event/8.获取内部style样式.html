@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			p {
+				font-size: 20px;
+				
+			}
+		</style>
+	</head>
+
+	<body>
+		<p style="color:red">123</p>
+		<script>
+			var p = document.querySelector("p")
+			console.log(p.style)
+			if(window.getComputedStyle) {
+				style = window.getComputedStyle(p, null); //支持IE9+及非IE浏览器
+				console.log(style)
+			} else {
+				style = p.currentStyle; // IE8及以前
+				console.log(style)
+			}
+
+			
+		</script>
+	</body>
+
+</html>

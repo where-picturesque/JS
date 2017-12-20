@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			div {
+				margin: 100px auto;
+			}
+			p{
+				width:100%;
+				height:100px;
+				background:yellow;}
+		</style>
+	</head>
+
+	<body>
+		<p>左右拖动</p>
+		
+		<div>
+			<img src="../img/38.jpg" />
+		</div>
+		<script>
+			var list=document.querySelector("p")
+			var box = document.querySelector("div")
+			var img = document.querySelector("img")
+			var offset = 38
+			list.onmousedown = function(e) {
+				var startX = e.clientX
+				var startY = e.clientY
+				console.log("点击")
+				var move = function(e) {
+					var endX = e.clientX
+					var endY = e.clientY
+					if(endX >= startX) {
+						console.log("滑右");
+						offset--;
+						console.log(offset)
+						img.src = "../img/" + offset + ".jpg"
+						console.log(img.src)
+						if(offset <=0) {
+							offset = 76
+							img.src = "../img/76.jpg"
+						}
+						} else {
+							offset++;
+							img.src = "../img/" + offset + ".jpg"
+							console.log(img.src)
+							if(offset === 76) {
+								offset = 0
+								img.src = "../img/0.jpg"
+							}
+						}
+
+					}
+				list.addEventListener("mousemove",move)
+				list.addEventListener("mouseup",function(e) {
+					list.removeEventListener("mousemove", move)
+				})
+				}
+				
+
+</script>
+	</body>
+
+</html>

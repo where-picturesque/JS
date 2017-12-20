@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>五星评分</title>
+    <style type="text/css">
+    #ul1 {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        width: 200px;
+        height: 28px;
+        float: left;
+    }
+    
+    #ul1 li {
+        float: left;
+        background: url(star.gif) no-repeat 0 0;
+        width: 27px;
+        height: 28px;
+    }
+
+    #ul1 li.active{
+         background: url(star.gif) no-repeat 0 -28px;
+    }
+    </style>
+</head>
+
+<body>
+    <ul id="ul1">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <span></span>
+   	<script>
+   		var oul=document.getElementById("ul1")
+   		var ali=oul.getElementsByTagName("li")
+   		var span=document.getElementsByTagName("span")[0]
+   		var index=0;
+   		var a=0
+   		var arr=["非常不满意","不满意","一般","满意","非常满意"]
+   		for (var i=0;i<ali.length;i++) {
+   			ali[i].index=i
+   		}
+   		oul.addEventListener("mouseover",function(e){
+   			var e=e||event;
+   			console.log(e.target.index)
+   			index=e.target.index;
+   			star(index+1)
+   		})
+   		oul.addEventListener("mouseout",function(e){
+   			star()
+   		})
+   		oul.addEventListener("click",function(e){
+   			var e=e||event;
+   			index=e.target.index;
+   			a=index+1;
+   			span.innerHTML=arr[index]
+   			
+   		})
+   		function star(num){
+   			var num=num||a;
+   			for (var i=0;i<ali.length;i++) {
+   				ali[i].className=num>i?"active":""
+   			}
+   		}
+   		
+   	</script>
+</body>
+
+</html>

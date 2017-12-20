@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		
+		#lunbo ul {
+			position: absolute;
+		}
+		
+		#lunbo {
+			width: 360px;
+			height: 305px;
+			margin: 100px auto;
+			position: relative;
+			overflow:hidden;
+		}
+		
+		#lunbo ul li {
+			width: 360px;
+			float: left;
+		}
+		
+		#lunbo ul li img {
+			width: 360px;
+			height: 305px;
+			display: block;
+		}
+		/*#lunbo ul li span {
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			color: #fff;
+			margin: 10px;
+		}*/
+		
+		#lunbo ol {
+			position: absolute;
+			right: 0;
+			bottom: 15px;
+		}
+		
+		#lunbo ol li {
+			width: 10px;
+			height: 10px;
+			border-radius: 50%;
+			background: blueviolet;
+			float: left;
+			margin: 0 5px;
+		}
+		
+		#lunbo ol li.active {
+			background: blue;
+		}
+		
+		#lunbo a {
+			position: absolute;
+			display: block;
+			width: 30px;
+			height: 50px;
+			background: darkgray;
+			color: #000;
+			text-decoration: none;
+			font: 700 24px/50px "";
+			text-align: center;
+			opacity: 0.5;
+			display: none;
+		}
+		
+		.zuo {
+			left: 0;
+			top: 125px;
+		}
+		
+		.you {
+			right: 0;
+			top: 125px;
+		}
+	</style>
+
+	<body>
+		<div id="lunbo">
+			<ul>
+				<li><img src="img/1.jpg" /></li>
+				<li><img src="img/2.jpg" /></li>
+				<li><img src="img/3.jpg" /></li>
+				<li><img src="img/4.jpg" /></li>
+				<li><img src="img/5.jpg" /></li>
+			</ul>
+			<ol>
+				<li class="active"></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ol>
+			<a href="#" class="zuo">&lt;</a>
+			<a href="#" class="you">&gt;</a>
+		</div>
+		<script type="text/javascript" src="js/public.js"></script>
+		<script>
+			var lunbo = document.getElementById("lunbo");
+			var apicUl = lunbo.getElementsByTagName("ul")[0]
+			var abtnOl = document.getElementsByTagName("ol")[0];
+			var abtns = document.getElementsByTagName("ol")[0].getElementsByTagName("li");
+			var apics =apicUl.getElementsByTagName("li");
+			
+
+			var first = apicUl.children[0].cloneNode(true);
+			var last = apicUl.children[apics.length - 1].cloneNode(true);
+			apicUl.appendChild(first);
+			apicUl.insertBefore(last, apicUl.children[0]);
+			
+            apics=apicUl.getElementsByTagName('li');
+			var oneChildWidth = apics[0].offsetWidth;
+			apicUl.style.width = oneChildWidth * (apics.length) + "px";
+			apicUl.style.left = -oneChildWidth + "px";
+           
+			var oStop = true;
+			var num = 0;
+			for(var i = 0; i < abtns.length; i++) {
+				abtns[i].index = i;
+				abtns[i].onclick = function() {
+					if(oStop) {
+						oStop = false;
+						num = this.index;
+						lun();
+						abtns[num].className = "active";
+					}
+				}
+			}
+
+			var oLeft = document.querySelector("#lunbo .zuo");
+			var oRight = document.querySelector("#lunbo .you");
+
+			lunbo.onmouseover = function() {
+				oLeft.style.display = "block";
+				oRight.style.display = "block";
+			}
+			lunbo.onmouseout = function() {
+				oLeft.style.display = "none";
+				oRight.style.display = "none";
+			}
+
+			oRight.onclick = function() {
+				if(oStop) {
+				oStop = false;
+					num++;
+					lun();
+					if(num == abtns.length) {
+						abtns[0].className = "active"
+//						num=0;
+					} else {
+						abtns[num].className = "active"
+					}
+					
+				}
+			}
+
+			oLeft.onclick = function() {
+				if(oStop) {
+					oStop = false;
+					num--;
+					lun();
+					if(num == -1) {
+						abtns[abtns.length - 1].className = "active"
+//						num=abtns.length - 1;
+					} else {
+						abtns[num].className = "active"
+					}
+				}
+			}
+
+			function lun() {
+				for(var i = 0; i < abtns.length; i++) {
+					abtns[i].className = "";
+				}
+				move(apicUl, {
+					left: -oneChildWidth * (num + 1)
+				}, function(){
+					if(num == abtns.length) {
+						apicUl.style.left = -oneChildWidth + "px";
+						num = 0;
+					}
+					if(num == -1) {
+						apicUl.style.left = -oneChildWidth * abtns.length + "px";
+						num = abtns.length - 1;
+					}
+					oStop = true;
+				});
+				
+			}
+			var timer=setInterval(function(){
+				oRight.onclick();
+			},3000)
+		</script>
+	</body>
+
+</html>

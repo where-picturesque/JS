@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		*{
+			margin:0;
+			padding: 0;
+			list-style:none;
+		}
+		.baidu{
+			width:560px;
+			height: 305px;
+			margin:20px auto;
+			position:relative;
+		}
+		.baidu ul{
+			
+		}
+		.baidu ul li{
+			position: absolute;
+			display: none;
+		}
+	
+		.baidu ul li img{
+			width: 560px;
+			height: 305px;
+		}
+		.baidu ol{
+			position: absolute;
+			left: 50%;
+			margin-left: -65px;
+			bottom: 20px;
+
+		}
+		.baidu ol li{
+			width: 10px;
+			height: 10px;
+			margin-right:5px;
+			border-radius: 50%;
+			background: lightblue;
+			float: left;
+		}
+		.baidu ol li.active{
+			background: red;
+		}
+		.baidu p{
+			font-size: 60px;
+			color: #fff;
+			position:absolute;
+			top: 50%;
+			margin-top:-30px;
+			display: none;
+			cursor: pointer;
+		}
+		#left{
+			left: 20px;
+
+		}
+		#right{
+			right: 20px;
+		}
+
+	</style>
+</head>
+<body>
+
+	<div class='baidu'>
+		<ul>
+			<li style="display: block;"><img src="https://imgsa.baidu.com/news/crop%3D3%2C1%2C751%2C388/sign=4c48ab194036acaf4dafccbc41eaa121/a044ad345982b2b75705d1e43aadcbef76099b7c.jpg"></li>
+			<li><img src="https://imgsa.baidu.com/news/q%3D100/sign=ab1a75dbac86c9170e035639f93c70c6/c995d143ad4bd1134d20261151afa40f4bfb0527.jpg"></li>
+			<li><img src="https://imgsa.baidu.com/news/q%3D100/sign=99b55a13b1a1cd1103b676208912c8b0/aa64034f78f0f736ceaaf2220155b319ebc413b8.jpg"></li>
+			<li><img src="https://imgsa.baidu.com/news/q%3D100/sign=bed91ffdfb1f3a295cc8d1cea924bce3/cc11728b4710b912fa7148ddc8fdfc0392452264.jpg"></li>
+			<li><img src="https://imgsa.baidu.com/news/q%3D100/sign=ce664d9bdf3f8794d5ff4c2ee21b0ead/8326cffc1e178a82e522d183fd03738da977e8f3.jpg"></li>
+			<li><img src="https://imgsa.baidu.com/news/q%3D100/sign=cdc2b31e12d8bc3ec00802cab28ba6c8/5366d0160924ab183668e7133efae6cd7b890b93.jpg"></li>
+			<li><img src="https://imgsa.baidu.com/news/q%3D100/sign=52760d0b3d7adab43bd01f43bbd4b36b/91529822720e0cf37da5f0d80146f21fbe09aa47.jpg"></li>
+			<li><img src="https://imgsa.baidu.com/news/q%3D100/sign=bd21672638fa828bd72399e3cd1f41cd/aa18972bd40735fae7d2ad9a95510fb30f2408f6.jpg"></li>
+		</ul>
+		<ol>
+			<li class="active" data="0"></li>
+			<li data="1"></li>
+			<li data="2"></li>
+			<li data="3"></li>
+			<li data="4"></li>
+			<li data="5"></li>
+			<li data="6"></li>
+			<li data="7"></li>
+		</ol>
+		<p id="left">&lt;</p>
+		<p id="right">&gt;</p>
+	</div>
+
+	<script>
+		
+		function Lunbo(){
+			this.aimgs=document.getElementsByTagName("ul")[0].getElementsByTagName('li')
+			this.abtns=document.getElementsByTagName("ol")[0].getElementsByTagName('li')
+			this.left=document.getElementById("left")
+			this.right=document.getElementById("right")
+			this.baidu = document.querySelector(".baidu")
+			var that=this
+			this.num=0
+			this.init=function(){
+				console.log(this)
+				for (var i = 0; i < this.abtns.length; i++) {
+					this.abtns[i].index=i
+					this.abtns[i].onclick=function(){//this-->this.abtns[i]
+						that.num=this.index
+						that.lunbo()
+					}
+				};
+				this.lunbo=function(){
+					for (var i = 0; i < that.abtns.length; i++) {
+						that.abtns[i].className=""
+						that.aimgs[i].style.display="none"
+					}
+					that.abtns[that.num].className="active"
+					that.aimgs[that.num].style.display="block"
+				}
+				this.baidu.onmouseover=function(){
+					that.left.style.display="block"
+					that.right.style.display="block"
+					clearInterval(that.timer)
+				};
+				this.baidu.onmouseout=function(){
+					that.left.style.display="none"
+					that.right.style.display="none"
+					that.timer=setInterval(function(){
+							that.right.onclick();
+						},2000);
+
+				};
+				this.right.onclick=function(){
+					if (that.num>=that.abtns.length-1) {
+						that.num=0
+					}else{
+						that.num++;
+					}			
+					that.lunbo()
+				}
+				this.left.onclick=function(){
+					if (that.num<=0) {
+						that.num=that.abtns.length-1
+					}else{
+						that.num--
+					}
+					that.lunbo()
+				};
+			};
+			
+			this.timer=setInterval(function(){
+				that.right.onclick();
+			},1000)
+			
+		}
+		var lunbo=new Lunbo();
+		lunbo.init()
+
+	</script>
+
+</body>
+</html>

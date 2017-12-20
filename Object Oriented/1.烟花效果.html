@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		html,body{
+			height: 100%;
+			background: black;
+		}
+		*{
+			margin: 0;
+			padding: 0;
+		}
+	</style>
+</head>
+<body>
+	<script type="text/javascript" src="public.js"></script>
+	<script type="text/javascript">
+		function Firework(x,y){
+			this.x=x;
+			this.y=y;
+			this.clientheight=document.documentElement.clientHeight
+			var that=this;
+			this.createfire=function(){
+				this.fire=document.createElement("div")
+				this.fire.style.cssText="width:5px;height:5px;background:rgb("+tool.ranNum(0,255)+","+tool.ranNum(0,255)+","+tool.ranNum(0,255)+");position:absolute;left:"+this.x+"px;top:"+this.clientheight+"px;"
+				document.body.appendChild(this.fire)
+					this.move()
+
+			};
+			this.move=function(){
+				move(this.fire,{top:this.y},10,function(){
+					console.log(this)
+					document.body.removeChild(that.fire)//烟花消失
+					that.frag();
+				})
+			};
+			this.frag=function(){//产生多个烟花碎片
+				for (var i = 0; i <tool.ranNum(30,60) ; i++) {//随机个数的碎片
+					this.fragment=document.createElement("div")
+					this.fragment.style.cssText="width:5px;height:5px;background:rgb("+tool.ranNum(0,255)+","+tool.ranNum(0,255)+","+tool.ranNum(0,255)+");position:absolute;top:"+this.y+"px;left:"+this.x+"px;"
+					document.body.appendChild(this.fragment)
+					 this.boom(this.fragment)
+
+				}
+			};
+			this.boom=function(obj){//碎片向外运动
+				var speedx=(Math.random()>0.5?"":"-")+tool.ranNum(2,15)
+				var speedy=(Math.random()>0.5?"":"-")+tool.ranNum(2,15)
+				speedx=parseInt(speedx)
+				speedy=parseInt(speedy)
+				var initx=this.x;
+				var inity=this.y;
+				obj.timer=setInterval(function(){
+					initx+=speedx;
+					inity+=speedy++;
+					console.log(that.clientheight)
+					if(inity>=that.clientheight-obj.offsetHeight){
+						clearInterval(obj.timer);//关闭定时器
+						document.body.removeChild(obj)//删除碎片
+					}
+					obj.style.left=initx+"px"
+					obj.style.top=inity+"px"
+				},50)
+
+			}
+
+		}
+		
+		document.onclick=function(e){
+			var e=e||event;
+			var firework=new Firework(e.clientX,e.clientY);
+			firework.createfire()
+		}
+	</script>
+
+</body>
+</html>

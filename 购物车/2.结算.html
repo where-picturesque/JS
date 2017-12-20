@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			li{
+				list-style:none;
+				width:200px;
+				height:300px;
+				border:1px solid #000;
+				float:left;
+				margin:10px 20px;
+				
+			}
+			img {
+				width: 100px;
+				height: 100px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<ul></ul>
+		<p></p>
+		<script>
+			var cardlist = [];
+			var sum = 0;
+			console.log(document.cookie)
+			var arr = document.cookie.split("; ")
+			console.log(arr)
+			for(var i = 0; i < arr.length; i++) {
+				var arr2 = arr[i].split("=")
+				console.log(arr2)
+				if(arr2[0] == "cardList") {
+					console.log(JSON.parse(arr2[1]))
+					cardlist = JSON.parse(arr2[1]);
+				}
+			}
+			var ul = document.querySelector("ul");
+			var p = document.querySelector("p");
+
+			function render() {
+				sum = 0;
+				ul.innerHTML = "";
+				for(var i = 0; i < cardlist.length; i++) {
+					ul.innerHTML += `
+					<li data="${cardlist[i].gid}">
+					<img src="${cardlist[i].imgsrc}"/>
+					<p>${cardlist[i].name}</p>
+					<p>${cardlist[i].price}</p>
+					<p>${cardlist[i].num}</p>
+					<button id="cutone">减少一件</button>
+					<button id="add">添加一件</button>
+					<button id="cutall">删除该商品</button>
+					</li>
+				`
+//					console.log(cardlist[i].num, cardlist[i].price)
+					sum += parseFloat(cardlist[i].num * parseFloat(cardlist[i].price))
+//					console.log(sum)
+				}
+				p.innerHTML = "总价格：" + sum;
+			}
+			render()
+//			console.log(sum)
+//			ul.addEventListener("click",function(e){
+//				var li = e.target.parentNode;
+//				console.log(li)
+//				for(var i = 0; i < cardlist.length; i++) {				
+//					if(li.getAttribute("data")===cardlist[i].gid){
+//						cardlist.splice(i,1);
+//						console.log(cardlist)
+//						render()
+//						//覆盖cookie
+//						document.cookie = "cardList = " + JSON.stringify(cardlist);
+//					}
+//				}
+//			})
+			function cut(li){			
+			for(var i = 0; i < cardlist.length; i++) {
+				if(li.getAttribute("data") === cardlist[i].gid) {
+					cardlist.splice(i, 1);
+					console.log(cardlist)
+					render()
+					//覆盖cookie
+					document.cookie = "cardList = " +JSON.stringify(cardlist);
+				}
+			}
+			}
+
+//			减少一件
+			function cutone(e) {
+			 	console.log("cutone:"+e.target.attributes[0].nodeValue)
+			 	if(e.target.attributes[0].nodeValue=="cutone"){
+				 	var li = e.target.parentNode
+				 	console.log("执行cutone")
+				 	li.children[3].innerHTML =li.children[3].innerHTML - 1
+				 	for(var i = 0; i < cardlist.length; i++) {				
+						if(cardlist[i].gid===li.getAttribute("data")){
+						 	cardlist[i].num=li.children[3].innerHTML
+							//当数量为0时将该商品从数组中移除
+						 	 if(cardlist[i].num == 0) {
+									cut(li)
+						 	}
+						}
+						 	
+					}	 	
+		 		document.cookie ="cardList = " + JSON.stringify(cardlist);
+				}
+			}
+			
+			//增加商品数量
+			function add(e){
+				console.log(e.target)
+			 	console.log("add:"+e.target.attributes[0].nodeValue)
+				
+			 	if(e.target.attributes[0].nodeValue=="add"){
+			 	var li = e.target.parentNode
+			 	console.log("执行add")
+			 	
+			 	li.children[3].innerHTML = parseInt(li.children[3].innerHTML) + 1
+			 	for(var i = 0; i < cardlist.length; i++) {				
+						if(cardlist[i].gid===li.getAttribute("data")){
+						 	cardlist[i].num=li.children[3].innerHTML
+						 }
+					}
+		 		document.cookie ="cardList = " + JSON.stringify(cardlist);
+//			 	console.log("数量："+li.children[3].innerHTML)
+			 	render()
+
+			 	}
+			}
+			
+			//删除该商品
+			function cutall(e) {
+			 	console.log("cutall:"+e.target.attributes[0].nodeValue)
+			 	if(e.target.attributes[0].nodeValue=="cutall"){
+			 		console.log("执行cutall")
+				 	var li = e.target.parentNode
+	//			 	console.log(li)
+				 	cut(li)
+			 		document.cookie ="cardList = " + JSON.stringify(cardlist);
+					}
+			}
+
+			ul.addEventListener("click", cutone)
+			ul.addEventListener("click", add)
+			ul.addEventListener("click", cutall)
+			
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		html,body{
+			height: 100%;
+			width: 100%;
+		}
+		body{
+			background:url(img/bg.jpg) no-repeat;
+			background-size: cover;
+		}
+		img{
+			width: 15px;
+			height: 15px;
+			position: absolute;
+		}
+	</style>
+</head>
+<body>
+<script type="text/javascript" src="public.js"></script>
+	<script type="text/javascript">
+		function Firefly(){
+			var that=this;
+			var clientwidth=document.documentElement.clientWidth
+			var clientheight=document.documentElement.clientHeight
+			this.createfire=function(){				
+				this.firefly=document.createElement("img")
+				this.firefly.src="img/1.jpg"
+				this.firefly.style.left=tool.ranNum(0,clientwidth-this.firefly.offsetWidth)+"px"
+				this.firefly.style.top=tool.ranNum(0,clientheight-this.firefly.offsetHeight)+"px"
+				document.body.appendChild(this.firefly)
+				
+			};
+			this.firemove=function(){				
+				var endx=tool.ranNum(0,clientwidth-this.firefly.offsetWidth)
+				var endy=tool.ranNum(0,clientheight-this.firefly.offsetHeight)
+				move(this.firefly,{left:endx,top:endy},800,function(){
+					that.firemove()
+				})
+			}
+		
+			
+		}
+		for (var i = 0; i < tool.ranNum(30,60); i++) {
+			var firefly=new Firefly();
+			firefly.createfire()
+			firefly.firemove()
+		}
+		
+	</script>
+</body>
+</html>

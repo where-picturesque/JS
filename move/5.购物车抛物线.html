@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		#box1{
+			width: 120px;
+			height: 150px;
+			position: absolute;
+			top: 500px;
+			left: 100px;
+		}
+		#box1 img{
+			width: 100px;
+			height: 100px;
+			display: block;
+			margin-left: 10px;
+		}
+		#box2{
+			width: 50px;
+			height: 100px;
+			background: red;
+			position: absolute;
+			right: 0;
+			top: 200px;
+		}
+	</style>
+</head>
+<body>
+	<div id="box1">
+		<img src="img/black-6.jpg">
+		<button>加入购物车</button>
+	</div>
+	<div id="box2">购物车</div>
+	<script type="text/javascript">
+		var box1=document.getElementById("box1")
+		var box2=document.getElementById("box2")
+		var img=box1.getElementsByTagName("img")[0]
+		var btn=box1.getElementsByTagName("button")[0]
+		var cx=box1.offsetLeft
+		var cy=box1.offsetTop
+		btn.onclick=function(e){
+			var e=e||event
+			var img2=img.cloneNode(true)
+			img2.style.cssText="opacity:0.5;position:absolute;width:100px;height:100px;top:0;left:0"
+			box1.appendChild(img2)
+		
+			console.log(cx)
+			console.log("img2.style.left"+img2.style.left)
+			var targetx=box2.offsetLeft
+			var targety=box2.offsetTop
+			var x=0
+			var a=0.001
+			var b=(targety-cy-a*(targetx-cx)*(targetx-cx))/(targetx-cx)
+			console.log(b)
+			var timer=setInterval(function(){
+				x+=30
+				var speed=2
+				var  y=a*x*x+b*x
+				console.log(img2.style.left)
+				if (x>=targetx-cx) {
+					clearInterval(timer)
+					img2.style.display="none"
+				}
+				img2.style.width=img2.offsetWidth-speed+"px"
+				img2.style.height=img2.offsetHeight-speed+"px"
+				img2.style.left=x+"px"
+				img2.style.top=y+"px"
+			},50)
+		}
+	</script>
+</body>
+</html>

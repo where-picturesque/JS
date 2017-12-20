@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		#box{
+			width: 100px;
+			height: 50px;
+			background: red;
+			position: absolute;
+			left: 200px;
+			top: 400px;
+		}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+	<!-- <div id="box1"></div> -->
+	<script type="text/javascript">
+		var box=document.getElementById("box")
+		var speedx=10;
+		var speedy=-20;
+		var timer=setInterval(function(){
+			speedy++
+			if (box.offsetTop>=500) {
+				clearInterval(timer)
+			}
+			box.style.left=box.offsetLeft+speedx+"px"
+			box.style.top=box.offsetTop+speedy+"px"
+		},30)
+	</script>
+</body>
+</html>

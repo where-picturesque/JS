@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			canvas {
+				width: 300px;
+				height: 300px;
+				background: #96C6D7;
+			}
+		</style>
+	</head>
+
+	<body>
+		<canvas></canvas>
+		<button>清屏</button>
+		<script>
+			var can = document.querySelector("canvas")
+			var pen = can.getContext("2d")
+			can.onmousedown = function(e) {
+					var e = e || event
+					var dix = e.clientX
+					var diy = e.clientY
+					console.log("开始",dix, diy)
+
+					pen.beginPath()
+					pen.moveTo(dix-can.offsetX,diy-can.offsetY)
+					document.onmousemove = function(e) {
+						var e = e || event
+						pen.lineTo(e.clientX-dix ,e.clientY-diy)
+						console.log("移动",e.clientX, e.clientY)
+						pen.stroke()
+					}
+//					can.onmousedown = function(e) {
+//						var e = e|| window.event;
+//						pen.moveTo(e.clientX - can.offsetLeft, e.clientY - can.offsetTop); //ev.clientX-oC.offsetLeft,ev.clientY-oC.offsetTop鼠标在当前画布上X,Y坐标
+//						document.onmousemove = function(e) {
+//							var ev = ev || window.event; //获取event对象
+//							pen.lineTo(e.clientX - can.offsetLeft, e.clientY - can.offsetTop);
+//							pen.stroke();
+//						};
+						document.onmouseup = function() {
+							document.onmousemove = null
+							document.onmouseup = null
+						}
+					}
+					document.querySelector("button").onclick=function(){
+						pen.clearRect(0,0,300,300)//bug
+					}
+		</script>
+	</body>
+
+</html>

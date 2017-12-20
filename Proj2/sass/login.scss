@@ -1,0 +1,175 @@
+@import "font";
+@import "public";
+
+$maincolor:#f10180;
+.margin {
+    width: 1000px;
+    margin: 40px auto;
+}
+
+#main {
+    color: #4c4c4c;
+}
+
+body {
+    background-color: #fdfbfe;
+}
+
+#header {
+    padding-bottom: 44px;
+    .logo {
+        float: left;
+        width: 315px;
+        height: 73px;
+        background: url(../images/normalLogin_sprite.png) no-repeat 0 0!important;
+    }
+    .promise {
+        float: right;
+        width: 445px;
+        height: 28px;
+        background-position: 0 -68px;
+        margin-top: 25px;
+        background-image: url(../images/sprite1.png);
+        background-position: -317px 0px;
+        background-repeat: no-repeat;
+    }
+}
+
+#content {
+    width: 1000px;
+    height: 600px;
+    background: url(../images/14906736174487.jpg) no-repeat 0 0;
+}
+
+.content-r {
+    float: right;
+    width: 274px;
+    padding-top: 40px;
+    padding-right: 100px;
+}
+
+.login {
+    .login-top {
+        font-size: 14px;
+        line-height: 16px;
+        margin-bottom: 15px;
+    }
+}
+
+.loginForm {
+        div {
+            margin-bottom: 25px;
+            position: relative;
+        }
+        input {
+            width: 250px;
+            padding: 8px 10px;
+            font: 14px/20px "";
+            color: #333;
+            background-color: #fff;
+            border: 1px solid #b2b2b2;
+            border-radius: 3px;
+            outline: 0;
+        }
+        .inp-error {
+            border-color: #f20266;
+        }
+        .error {
+            position: absolute;
+            bottom: -25px;
+            height: 25px;
+            font: 12px/25px "";
+            margin-top: -25px;
+            color: #f20266;
+        }
+        .login-btn {
+            margin-bottom: 0;
+            width: 140px;
+            height: 40px;
+            font-size: 16px;
+            background-color: $maincolor;
+            border: 1px solid $maincolor;
+            color: #FFFFFF;
+            cursor: pointer;
+        }
+        .pwderror{
+            font:12px/25px "";
+            color:$maincolor;
+        }
+    }
+    .login-ft {
+        margin-bottom: 40px;
+        width: 274px;
+        font: 12px/32px"";
+        .mem-pwd {
+            float: left;
+            .agree-icon {
+                display: inline-block;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                background-image: url(../images/sprite.png);
+                background-position: -48px 0;
+                width: 19px;
+                height: 16px;
+                vertical-align: middle;
+            }
+            .agree-icon:hover {
+                background-position: -24px -21px;
+            }
+            .agree-icon.checkagree {
+                background-position: -24px 0;
+            }
+        }
+        .login-ft-r {
+            float: right;
+            color: #b3b3b3;
+            .toreg {
+                color: #f10180;
+            }
+        }
+    }
+
+.cooperation {
+    font: 12px/24px "";
+    color: #333333;
+    .cooperation-icon .icon {
+        float: left;
+        _display: inline;
+        margin-right: 8px;
+        background-image: url(../images/sprite3.png);
+        width: 24px;
+        height: 24px;
+    }
+    .icon-sina {
+        background-position: -291px -57px;
+    }
+    .icon-qq {
+        background-position: -235px -57px;
+    }
+    .icon-alipay {
+        background-position: -179px -57px;
+    }
+    .icon-wechat {
+        background-position: -207px -57px;
+    }
+    .arrow {
+        display: inline-block;
+        font-size: 0;
+        height: 0;
+        overflow: hidden;
+        border-width: 4px;
+        border-style: solid dashed dashed dashed;
+        border-color: #666 transparent transparent transparent;
+        vertical-align: -2px;
+        margin-left: 2px;
+    }
+}
+
+.copyright {
+    text-align: center;
+    color: #767074;
+    font-size: 12px;
+    margin-bottom: 20px;
+}

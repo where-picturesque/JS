@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		*{margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		#box{
+			margin: 100px;
+			display: flex;
+			width: 740px;
+		}
+		#box #box1{
+			width: 300px;
+		}
+		#small{
+			width: 300px;
+			height: 300px;
+			border: 1px solid black;
+			position: relative;
+		}
+		#small img{
+			width: 300px;
+			height: 300px;
+		}
+		#small #smallscale{
+			width: 100px;
+			height:100px;
+			position: absolute;
+			background: rgba(0,0,255,0.3);
+			left: 0;
+			top: 0;
+			visibility: hidden;
+			cursor: move;
+		}
+		#list{
+			width: 300px;
+			height: 60px;
+			display: flex;
+		}
+		#list p{
+			font-size: 30px;
+			cursor: pointer;
+		}
+		#list #ulbox{
+			position: relative;
+			width: 260px;
+			overflow: hidden;
+		}
+		#list ul{			
+			width: 372px;
+			position: absolute;
+			left: 0;
+			overflow: hidden;
+		}
+		#list ul li{
+			float:left;
+			border: 1px solid grey;
+			width: 50px;
+			height: 50px;
+			margin: 5px;
+		}
+		#list ul li img{
+			width: 50px;
+			height: 50px;
+			display: block;
+		}
+
+		#big{
+			width: 400px;
+			height: 400px;
+			border: 1px solid grey;
+			overflow: hidden;
+			margin-left: 10px;
+			visibility: hidden;
+			position: relative;
+		}
+		#big img{
+			width: 600px;
+			height: 600px;
+			position: absolute;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div id="box1">
+			<div id="small">
+				<img src="img/black-1.jpg">
+				<div id="smallscale"></div>
+			</div>
+			<div id="list">
+				<p id="left">&lt;</p>
+				<div id="ulbox">
+					<ul>
+						<li><img src="img/black-1.jpg"></li>
+						<li><img src="img/black-2.jpg"></li>
+						<li><img src="img/black-3.jpg"></li>
+						<li><img src="img/black-4.jpg"></li>
+						<li><img src="img/black-5.jpg"></li>
+						<li><img src="img/black-7.jpg"></li>
+					</ul>
+				</div>
+				
+				<p id="right">&gt;</p>
+			</div>
+		</div>
+		<div id="big">
+			<div id="bigImg">
+				<img src="img/black-1.jpg">
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var box=document.getElementById("box")
+		var box1=document.getElementById("box1")
+		var small=document.getElementById("small")
+		var smallImg=small.getElementsByTagName("img")[0]
+		var smallscale=document.getElementById("smallscale")
+		var big=document.getElementById("big")
+		var bigImg=big.getElementsByTagName("img")[0]
+		var list=document.getElementById("list")
+		var oul=list.getElementsByTagName("ul")[0]
+		var aLi=oul.getElementsByTagName("li")
+
+		var left=document.getElementById("left")
+		var right=document.getElementById("right")
+		small.onmouseover=function(){
+			big.style.visibility="visible"
+			smallscale.style.visibility="visible"
+			
+			var scale=bigImg.offsetWidth/small.offsetWidth
+			console.log(bigImg.offsetWidth,small.offsetWidth)
+			smallscale.style.width=big.offsetWidth/scale+"px"
+			smallscale.style.height=big.offsetHeight/scale+"px"
+			console.log(smallscale.style.width,smallscale.style.height)
+			small.onmousemove=function(e){
+				var e=e||event
+				var mleft=e.clientX-box.offsetLeft-smallscale.offsetWidth/2
+				var mtop=e.clientY-box.offsetTop-smallscale.offsetHeight/2
+				if (mleft<0) {
+					mleft=0
+				}
+				if (mleft>small.offsetWidth-smallscale.offsetWidth) {
+					mleft=small.offsetWidth-smallscale.offsetWidth-2
+				}
+				if (mtop<0) {
+					mtop=0
+				}
+				if (mtop>small.offsetHeight-smallscale.offsetHeight) {
+					mtop=small.offsetHeight-smallscale.offsetHeight-2
+				}
+				bigImg.style.left=-scale*mleft+"px"
+				bigImg.style.top=-scale*mtop+"px"
+				smallscale.style.left=mleft+"px"
+				smallscale.style.top=mtop+"px"
+
+
+			}
+		}
+		small.onmouseout=function(){
+			big.style.visibility="hidden"
+			smallscale.style.visibility="hidden"
+		}
+
+// 	点击下方小图切换图片
+		for (var i = 0; i < aLi.length; i++) {
+			aLi[i].onclick=function(e){
+				console.log(this.children[0])
+				smallImg.src=this.children[0].src
+				bigImg.src=this.children[0].src
+			}
+		}
+		
+// 		左右方向键
+		var perLiWidth=aLi[0].offsetWidth
+
+		right.onclick=function(){
+			var toright
+			if (oul.offsetLeft<-90) {
+				right.style.visibility="hidden"
+			}else{
+				right.style.visibility="visible"
+				left.style.visibility="visible"
+				
+			}
+			oul.style.left=-perLiWidth+oul.offsetLeft+"px"
+			
+		}
+		left.onclick=function(){	
+			var toleft	
+			if (oul.offsetLeft>=0) {
+				left.style.visibility="hidden"
+				toleft=oul.offsetLeft
+			}else{
+				left.style.visibility="visible"
+				right.style.visibility="visible"				
+				toleft=	perLiWidth+oul.offsetLeft
+			}
+			oul.style.left=toleft+"px"
+		}
+
+
+
+
+
+
+	</script>
+</body>
+</html>

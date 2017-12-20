@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		#box1{
+			width: 200px;
+			height: 200px;
+			background: blue;
+			position: absolute;
+			top: 200px;
+			left: 400px;
+		}
+		#box2{
+			width: 200px;
+			height: 200px;
+			background: orange;
+			position: absolute;
+		}
+	</style>
+</head>
+<body>
+	<div id="box1"></div>
+	<div id="box2"></div>
+	<script type="text/javascript">
+		var box2=document.getElementById("box2")
+		var box1=document.getElementById("box1")
+		var t1=box1.offsetTop
+		var l1=box1.offsetLeft
+		var r1=box1.offsetLeft+box1.offsetWidth
+		var b1=box1.offsetTop+box1.offsetHeight
+		box2.onmousedown=function(e) {
+			var e=e||event
+			var shortx=e.offsetX;
+			var shorty=e.offsetY
+			document.onmousemove=function(e){
+				var e=e||event
+				var t2=box2.offsetTop
+				var l2=box2.offsetLeft
+				var r2=box2.offsetLeft+box2.offsetWidth
+				var b2=box2.offsetTop+box2.offsetHeight
+				var left=e.clientX-shortx
+				var top=e.clientY-shorty
+				if (b2>t1||r2<l1||t2>b1||l2>r1) {
+
+				}else{
+					box2.style.background="red"
+					box1.style.background="black"
+				}
+				box2.style.left=left+"px"
+				box2.style.top=top+"px"
+
+			}
+			document.onmouseup=function(){
+				document.onmouseup=null;
+				document.onmousemove=null;
+			}
+		}
+	</script>
+
+</body>
+</html>

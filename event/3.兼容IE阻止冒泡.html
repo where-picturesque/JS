@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{
+				background: #E6E6EA;
+			}
+			div{
+				width:200px;
+				height:400px;
+				margin: 50px;
+				padding: 50px;
+				background: #FF3B30;
+			}
+			button{
+				
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<button>OK</button>
+		</div>
+		<script>
+			document.querySelector("button").onclick=function(){
+				console.log("点击按钮")
+			}
+			document.querySelector("div").onclick=function(){
+				console.log("点击div")
+				if(e.stopPropagation){
+					e.stopPropagation()
+				}else{
+					e.canleBubble=true
+				}
+			
+			}
+			document.querySelector("body").onclick=function(e){
+				console.log("点击body")
+			}		
+			
+		</script>
+	</body>
+</html>

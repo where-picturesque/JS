@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+	*{
+		margin: 0;
+		padding: 0;
+	}
+		.box{
+			width: 100px;
+			height: 100px;
+			background: red;
+			position: absolute;
+			border-radius: 50%;
+		}
+	</style>
+</head>
+<body>
+	<div class="box"></div>
+	<div style="width: 1px;height:300px;position:absolute;left: 600px;background: black "></div>
+
+	<script type="text/javascript">
+		var oDiv=document.querySelector(".box")
+		var speed=0;
+		var timer = setInterval(function(){//弹性运动
+			speed+=(600-oDiv.offsetLeft)/5
+			speed*=.7//损耗
+			if (Math.abs(speed)<1&&Math.abs(oDiv.offsetLeft-600)<1) {
+				speed=0;
+				oDiv.offsetLeft=600
+				clearInterval(timer)
+			}
+			console.log(speed,oDiv.style.left)
+			oDiv.style.left=oDiv.offsetLeft+speed+"px"
+		},50)
+
+
+	</script>
+
+</body>
+</html>

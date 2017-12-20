@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>唯品会-我的购物袋</title>
+		<link rel="stylesheet" type="text/css" href="css/cart.css" />
+	</head>
+
+	<body>
+		<div id="mask">
+			<div class="mustlogin">
+				<div class="frameTitle">
+					<span class="fl">唯品会员</span>
+					<a class="fr btnCloseFrame" href="javascript:void(0);" mars_sead="383|2|4|15"><i class="closeFrame"></i></a>
+				</div>
+				<i class="closeFrame"></i>
+				<div class="mustlogin-head clear">
+					<p class="tologin act">登录</p>
+					<p class="toreg">注册</p>
+				</div>
+				<div class="must-content">
+					<div class=" must-content-inner must-content-login">
+						<form class="loginForm" method="post" action="php/login.php">
+
+							<div class="username div-input">
+								<input type="text" class="username-inp" name="username" placeholder="手机号/用户名/邮箱" autocomplete="off">
+								<p class="error"></p>
+							</div>
+							<div class="password div-input">
+								<input type="password" class="password-inp" name="password" placeholder="密码" autocomplete="off">
+								<p class="error"></p>
+
+							</div>
+							<p class="pwderror"></p>
+							<input type="button" class="login-btn" value="登录" name="submit" />
+
+						</form>
+						<div class="login-ft clear">
+							<div class="mem-pwd">
+								<span class="agree-icon"></span>
+								<label for="agree-icon" class="agree-txt">记住用户名</label>
+							</div>
+							<div class="login-ft-r">
+								<a href="#" class="forgetpwd">忘记密码?</a>
+								<span>|</span>
+								<a href="register.html" class="toreg">免费注册</a>
+							</div>
+						</div>
+						<div class="cooperation">
+							<p class="cooperation-txt">合作网站账号登录：</p>
+							<p class="cooperation-icon">
+
+								<a href="#" title="新浪微博" class="icon-sina icon"></a>
+								<a href="#" title="QQ" class="icon-qq icon"></a>
+								<a href="#" title="支付宝" class="icon-alipay icon"></a>
+								<a href="#" title="微信" class="icon-wechat icon"></a>
+								<a href="javascript:void(0);" class="more">更多<i class="arrow"></i></a>
+							</p>
+						</div>
+
+					</div>
+					<div class="must-content-inner must-content-reg">
+						<form class="regForm" method="post" action="php/reg.php">
+
+							<div class="phone div-input">
+								<input type="text" class="phone-inp" name="username" placeholder="请输入手机号码" autocomplete="off">
+								<p class="notice">请输入您的11位手机号码</p>
+								<p class="warning">
+									<i class="vipFont if-sigh"></i>
+									<span class="wraning-text"></span>
+								</p>
+								<i class="i-if-success vipFont" style=""></i>
+							</div>
+							<div class="password div-input">
+								<input type="password" class="password-inp" name="password" placeholder="密码由6-20位字母，数字和下划线组合" autocomplete="off">
+								<p class="notice">密码由6-20位字母，数字和下划线组合，区分大小写
+								</p>
+								<p class="warning">
+									<i class="vipFont if-sigh"></i>
+									<span class="wraning-text">密码不能为空</span>
+								</p>
+								<i class="i-if-success vipFont" style=""></i>
+								<div class="pwd-level">
+									<span class="pwd-level-color low"></span>
+									<span class="pwd-level-color middle"></span>
+									<span class="pwd-level-color high"></span>
+									<span class="level-text"></span>
+								</div>
+							</div>
+							<div class="checkpwd div-input">
+								<input type="password" name="checkpwd" placeholder="请再次输入上面的密码" class="checkpwd-inp" autocomplete="off">
+
+								<p class="warning">
+									<i class="vipFont if-sigh"></i>
+									<span class="wraning-text">请输入确认密码</span>
+								</p>
+								<i class="i-if-success vipFont" style=""></i>
+							</div>
+							<div class="checkcode div-input">
+								<input type="text" id="Txtidcode" class="txtVerification" placeholder="请输入验证码" autocomplete="off">
+								<i class="i-if-success vipFont" style=""></i>
+								<!--<button id="idcode"></button>-->
+								<span class="createcode"></span>
+								<p class="warning">请输入验证码</p>
+							</div>
+							<div class="toreg clear">
+								<input type="submit" class="reg-btn" value="立即注册" name="submit" />
+
+								<a class="email-reg">通过邮箱注册</a>
+							</div>
+							<div class="agree">
+								<span class="agree-icon"></span>
+								<label for="agree-icon" class="agree-txt">
+								我已阅读并接受
+								<a href="#">《唯品会服务条款》</a>
+								<a href="#">《隐私条款》</a>
+								等
+							</label>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="header">
+			<div class="margin">
+				<a href="index.html" class="logo"></a>
+				<div class="header-r">
+					<div class="m-inline-block m-site-nav">
+						<div class="inline-block-item regorlog">
+							<a href="login.html" class="header-login">登录</a>
+							<a href="register.html" class="header-reg">注册</a>
+						</div>
+						<span class="header-line">|</span>
+
+						<div class="inline-block-item tel">
+							<span class="vipFont if-tel"></span>400-6789-888
+						</div>
+
+						<span class="header-line">|</span>
+
+						<div class="inline-block-item online-service">
+							<a href="//acs.vip.com/" class="J_header_olService J_fake_a" target="_blank" rel="external">
+								<span class="vipFont if-online-service"></span>在线客服
+							</a>
+						</div>
+
+						<span class="header-line">|</span>
+						<div class="inline-block-item servers-links">
+							<div class="m-servers-dropdown" data-hover="m-servers-dropdown-hover" data-touch="z-touch">
+								<div class="servers-dropdown-hd">
+									<span class="servers-dropdown-hd-title">
+                    <span class="vipFont if-member"></span>会员服务
+									</span>
+									<span class="vipFont if-arrow-down"></span>
+								</div>
+								<div class="servers-dropdown-bd">
+									<ul>
+										<li>
+											<a href="#">帮助中心</a>
+										</li>
+										<li>
+											<a href="#">会员反馈</a>
+										</li>
+										<li>
+											<a href="#">会员俱乐部</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<ul class="header-r-promise">
+						<li class="header-promise-item">
+							<span class="vipFont  header-promise-icon"></span>
+							<span class="header-promise-text">100% 正品保证</span>
+						</li>
+						<!--
+     -->
+						<li class="header-promise-item">
+							<span class="vipFont header-promise-icon"></span>
+							<span class="header-promise-text">七天无理由放心退</span>
+						</li>
+						<!--
+     -->
+						<li class="header-promise-item">
+							<span class="vipFont  header-promise-icon"></span>
+							<span class="header-promise-text">退货返运费</span>
+						</li>
+					</ul>
+				</div>
+
+			</div>
+		</div>
+		<!--header-->
+
+		<!--主体-->
+		<div id="main" class="margin">
+
+			<!--空购物车-->
+			<div class="cart-empty clear">
+				<span class=" cart-empty-icon"></span>
+				<div class="cart-tips-cnt">
+					<div class="cart-tips-text">
+						<p>购物袋空空如也，</p>
+						<p>快去抢购心仪商品吧~</p>
+					</div>
+					<div class="cart-tips-actions">
+						<a class="tobuy cart-empty-btn" href="index.html">立即抢购 </a>
+						<a class="toshow cart-empty-btn">查看订单</a>
+					</div>
+				</div>
+			</div>
+			<!--空购物车-->
+			<!--倒计时-->
+			<div class="hasgood">
+				<div class="cart-header clear">
+					<h2 class="cart-header-left">购物袋</h2>
+					<span class="cart-header-send">配送至<em class="area-province">上海</em></span>
+					<!--<div class="inline-block-item channel-tips-cnt m-shopping-tips J_countDown">
+						<p class="shopping-tips-text  countdown-text">
+							请在<span class="countdown"><span class="countdown-num J_operate_countDown_min">11</span>分<span class="countdown-num J_operate_countDown_sec">58</span>秒</span>内提交订单，下单后你另有 30 分钟的支付时间。
+						</p>
+					</div>-->
+				</div>
+				<div class="cart-content">
+					<!--标题-->
+					<div class="orders-hd">
+						<ul class="orders-header">
+							<li class="th-item title-item ">
+
+								<span class="text" title="唯品自营&nbsp;">
+                             唯品自营&nbsp;
+                        </span>
+
+							</li>
+							<li class="th-item price-item">
+								<span class="text">单价</span>
+							</li>
+							<li class="th-item quantity-item">
+								<span class="text">数量</span>
+							</li>
+							<li class="th-item subtotal-item">
+								<span class="text">小计</span>
+							</li>
+							<li class="th-item actions-item">
+								<span class="text">操作</span>
+							</li>
+						</ul>
+					</div>
+					<div class="product-list">
+						<table class="product-table">
+							<tr class="product-item product-item-hidden">
+								<td class="pro-info">
+									<div class="product-img clear">
+										<!--product-smallimg 里面有sid属性-->
+										<img src="" alt="" class="product-smallimg" />
+										<div class="zoom"></div>
+									</div>
+									<a hreef="#" class="product-link">
+										<p class="product-name"></p>
+									</a>
+								</td>
+
+								<td class="price price-item">
+									<p class="price-now"></p>
+									<p class="price-before"></p>
+								</td>
+								<td class="product-num quantity-item">
+									<div class="num-box">
+										<span class="num-reduce  num-btn   "></span>
+										<em class="num-input ">1</em>
+
+										<span class="num-add num-btn "></span>
+									</div>
+
+								</td>
+								<!--//小计-->
+								<td class="subtotal-item"></td>
+								<td class="actions-item">删除</td>
+							</tr>
+						</table>
+
+					</div>
+
+				</div>
+				<div class="totalPrice clear">
+					<div class="time">
+
+						<div class="total-amount clear">
+							<p class="total-amount-text">
+								总金额（<span class="fee-free">已免运费</span>）：
+								<span class="total-price">
+                        <span class="u-yen">¥</span><span class=" total-price-num"></span>
+								</span>
+							</p>
+						</div>
+						<p class="time-text">
+							请在倒计时前结束前结算<span class="vipFont time-icon"></span>
+						</p>
+					</div>
+					<div class="buy-btn">立即结算</div>
+				</div>
+			</div>
+
+			<!--承诺-->
+			<!--<div class="c-promises">
+				<div class="promises-item  authentic-promises-item">
+					<div class="promises-pic"></div>
+					<h3 class="promises-title">100% 正品保证</h3>
+					<div class="promises-explain">
+						<p>唯品会所售品牌均经过授权；中国人民财产保险为您购买的每一件商品进行承保。</p>
+					</div>
+				</div>
+				
+				<div class="promises-item  return-promises-item">
+					<div class="promises-pic"></div>
+					<h3 class="promises-title">7 天无理由退货</h3>
+					<div class="promises-explain">
+						<p>签收后7天内可无理由退货，完善售后，退货无忧；部分特别说明商品除外。</p>
+					</div>
+				</div>
+				
+				<div class="promises-item  courier-charge-promises-item">
+					<div class="promises-pic"></div>
+					<h3 class="promises-title">退货返运费</h3>
+					<div class="promises-explain">
+						<p>善变无罪！退货成功后，你将获得回寄运费补贴。</p>
+					</div>
+				</div>
+			</div>
+			<!--承诺-->
+
+		</div>
+
+		<!--商品推荐-->
+		<div id="recommend" class="margin">
+			<p class="recommend-head">猜你喜欢</p>
+			<ul class="recommend-list clear">
+				<li class="recommend-list-item recommend-list-item-hidden">
+					<a href=""><img class="recommend-id" src="" alt="" sid="" /></a>
+					<p class="recommend-title over"></p>
+					<p class="recommend-price"></p>
+					<p class="recommend-btn">加入购物车</p>
+				</li>
+			</ul>
+		</div>
+
+		<!--footer-->
+		<div id="footer">
+			<div class="margin1">
+				<ul class="footer-vip clear">
+					<li>
+						<span class="ft-vip v01"></span>
+					</li>
+					<li>
+						<span class="ft-vip v02"></span>
+					</li>
+					<li>
+						<span class="ft-vip v03"></span>
+					</li>
+					<li>
+						<span class="ft-vip v04"></span>
+					</li>
+					<li>
+						<span class="ft-vip v05"></span>
+					</li>
+					<li>
+						<span class="ft-vip v06"></span>
+					</li>
+					<li>
+						<span class="ft-vip v07"></span>
+					</li>
+					<li>
+						<span class="ft-vip v08"></span>
+					</li>
+					<li>
+						<span class="ft-vip v09"></span>
+					</li>
+					<li>
+						<span class="ft-vip v10"></span>
+					</li>
+
+				</ul>
+				<div class="list clear">
+					<dl class="info">
+						<dt>服务保障</dt>
+						<dd>
+							<a href="#">正品保证</a>
+						</dd>
+						<dd>
+							<a href="#">7天无理由放心退</a>
+						</dd>
+						<dd>
+							<a href="#">退货返运费</a>
+						</dd>
+						<dd>
+							<a href="#">7x15小时客户服务</a>
+						</dd>
+					</dl>
+					<dl class="info">
+						<dt>购物指南</dt>
+						<dd>
+							<a href="#">导购演示</a>
+						</dd>
+						<dd>
+							<a href="#">订单操作</a>
+						</dd>
+						<dd>
+							<a href="#">会员注册</a>
+						</dd>
+						<dd>
+							<a href="#">账户管理</a>
+						</dd>
+						<dd>
+							<a href="#">收货样品</a>
+						</dd>
+						<dd>
+							<a href="#">会员等级</a>
+						</dd>
+					</dl>
+					<dl class="info">
+						<dt>支付方式</dt>
+						<dd>
+							<a href="#">快捷支付</a>
+						</dd>
+						<dd>
+							<a href="#">23家主流网银支付</a>
+						</dd>
+						<dd>
+							<a href="#">货到付款</a>
+						</dd>
+						<dd>
+							<a href="#">支付宝、银联等支付</a>
+						</dd>
+						<dd>
+							<a href="#">信用卡支付</a>
+						</dd>
+						<dd>
+							<a href="#">零钱支付</a>
+						</dd>
+					</dl>
+					<dl class="info">
+						<dt>配送方式</dt>
+						<dd>
+							<a href="#">全场满288元免运费</a>
+						</dd>
+						<dd>
+							<a href="#">配送范围及运费</a>
+						</dd>
+						<dd>
+							<a href="#">验货与签收</a>
+						</dd>
+
+					</dl>
+					<dl class="info">
+						<dt>售后服务</dt>
+						<dd>
+							<a href="#">退货政策</a>
+						</dd>
+						<dd>
+							<a href="#">退货流程</a>
+						</dd>
+						<dd>
+							<a href="#">退款方式和时效</a>
+						</dd>
+					</dl>
+					<dl class="code">
+						<dt>唯品会APP二维码</dt>
+						<dd>
+							<img src="images/page_bottom_dl_n.png" />
+						</dd>
+						<dd>下载唯品会移动APP</dd>
+					</dl>
+				</div>
+				<div class="footer-info">
+					<div class="footer-link">
+						<a href="#" title="关于我们">关于我们</a>
+						<span>|</span>
+						<a href="#" title="About us">About us</a>
+						<span>|</span>
+						<a href="#" title="Investor Relations">Investor Relations</a>
+						<span>|</span>
+						<a href="#" title="媒体报道">媒体报道</a>
+						<span>|</span>
+						<a href="#" title="品牌招商">品牌招商</a>
+						<span>|</span>
+						<a href="#" title="隐私条款">隐私条款</a>
+						<span>|</span>
+						<a href="#" title="唯品诚聘">唯品诚聘</a>
+						<span>|</span>
+						<a href="#" title="365爱心基金">365爱心基金</a>
+						<span>|</span>
+						<a href="#" title="唯品卡">唯品卡</a>
+						<span>|</span>
+						<a href="#" title="联系我们">联系我们</a>
+					</div>
+					<div class="footer-copyright">
+
+						Copyright © 2008-2017 vip.com，All Rights Reserved&nbsp;&nbsp;使用本网站即表示接受
+						<a href="#">唯品会用户协议</a>。版权所有
+						<a href="#">广州唯品会信息科技有限公司</a><br>
+						<a href="#"><img src="images/police_icon.png">粤公网安备 44010302111111号</a>&nbsp;&nbsp;
+						<a href="#">粤ICP备08114786号</a>
+						<a href="#">ICP经营许可证：粤B2-20080329 </a>
+						<a href="#">网络文化经营许可证：粤网文〔2015〕1528-229</a><br>
+						<a href="#">自营主体经营证照</a>&nbsp;&nbsp;
+						<a href="#">风险监测信息</a>&nbsp;&nbsp;
+						<a href="#">互联网药品交易服务资格证（粤C20140002）</a>
+
+					</div>
+				</div>
+				<div class="footer-support">
+					<a href="#">
+						<i class="ft-sup1" title="银联特约商户"></i>
+					</a>
+					<a href="#">
+						<i class="ft-sup2" title="消费维权服务站"></i>
+					</a>
+					<a href="#">
+						<i class="ft-sup3" title="红盾电子链接标识"></i>
+					</a>
+					<a href="#">
+						<i class="ft-sup4" title="网络警察报警平台"></i>
+					</a>
+					<a href="#">
+						<i class="ft-sup5" title="公安局网络警察支队"></i>
+					</a>
+					<a href="#">
+						<i class="ft-sup6" title="诚信网站"></i>
+					</a>
+					<a href="#">
+						<i class="ft-sup7" title="可信网站"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+		<!--footer-->
+
+		<script src="js/require.js" data-main="js/cart-main.js" type="text/javascript" charset="utf-8"></script>
+
+	</body>
+
+</html>

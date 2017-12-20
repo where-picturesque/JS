@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#pop{
+				width:200px;height: 200px;
+				background: #9999FF;
+				position: absolute;
+			}
+			header{
+				height:30px;
+				background: #A6D796;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="pop">
+			<header><span id="close">关闭</span></header>
+			<div id="content"></div>
+		</div>
+		<script>
+			var pop=document.getElementById("pop")
+			var close=document.getElementById("close")
+			pop.onmousedown=function(e){
+				var e=e||event
+				var dix=e.offsetX
+				var diy=e.offsetY
+				document.onmousemove=function(e){
+					var e=e||event
+					pop.style.left=e.clientX-dix+"px"
+					pop.style.top=e.clientY-diy+"px"
+				}
+				document.onmouseup=function(){
+					document.onmousemove=null
+					document.onmouseup=null
+				}
+			}
+			close.onclick=function(){
+				pop.style.display="none"
+			}
+		</script>
+	</body>
+</html>

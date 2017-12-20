@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			ul{
+				width:100px;
+				height:150px;
+				background:#E0E0E0;
+				position: absolute;
+				display: none;
+			}
+			li{
+				list-style: none;
+			}
+			ul li:hover{
+				background: #ADADAD;
+			}
+		</style>
+	</head>
+
+	<body>
+		<ul>
+			<li>复制ctrl+c</li>
+			<li>粘贴ctrl+v</li>
+			<li>剪切ctrl+x</li>
+		</ul>
+		<script>
+			var  rightmenu=document.querySelector("ul")
+			document.oncontextmenu = function(e) {
+				console.log("右键被按下");
+				rightmenu.style.display="block"
+				rightmenu.style.left=e.clientX+"px"
+				rightmenu.style.top=e.clientY+"px"
+				return false;
+			}
+			document.onclick=function(){
+				rightmenu.style.display="none"
+				
+			}
+		</script>
+	</body>
+
+</html>

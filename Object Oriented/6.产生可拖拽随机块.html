@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		html,body{
+			height: 100%;
+			overflow: hidden;
+		}
+	</style>
+</head>
+<body>
+<script type="text/javascript" src="public.js"></script>
+	<script type="text/javascript">
+		function Box(){
+			var clientwidth=document.documentElement.clientWidth
+			var clientheight=document.documentElement.clientHeight
+			var that=this;
+			this.createBox=function(){
+				this.box=document.createElement("div")
+				this.box.style.cssText="width:"+parseInt(tool.ranNum(50,200))+"px;height:"+parseInt(tool.ranNum(50,200))+"px;position:absolute;background:rgb("+tool.ranNum(0,255)+","+tool.ranNum(0,255)+","+tool.ranNum(0,255)+");"
+				this.box.style.left=tool.ranNum(0,clientwidth-parseInt(this.box.style.width))+"px"
+				this.box.style.top=tool.ranNum(0,clientheight-parseInt(this.box.style.height))+"px"
+				document.body.appendChild(this.box)
+				this.drag()
+			};
+			this.drag=function(){
+				this.box.onmousedown=function(e){
+					var e=e||event
+					var shortx=e.offsetX;
+					var shorty=e.offsetY;
+					document.onmousemove=function(e){
+						var e=e||event;
+						console.log(shortx)
+						that.box.style.left=e.clientX-shortx+"px"
+						that.box.style.top=e.clientY-shorty+"px"
+					}
+					document.onmouseup=function(){
+						document.onmouseup=null;
+						document.onmousemove=null;
+					}
+				}
+			}
+			
+			
+		}
+		document.onkeydown=function(e){
+			var e=e||event
+			console.log(e.keyCode)
+			if (e.keyCode==32) {
+				new Box().createBox();
+			}
+		}
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+	<style type="text/css">
+	*{
+		margin:0;
+		padding: 0;
+		list-style: none;
+	}
+		#box{
+			width: 400px;
+			height: 400px;
+			margin:100px auto;
+		}
+		#head{
+			height: 50px;
+			background:lightskyblue;
+		}
+		#head ul{
+			overflow: hidden;
+		}
+		#head ul li{
+			float: left;
+			height: 50px;
+			width: 100px;
+			text-align: center;
+			cursor: pointer;
+			font:24px/50px "";
+			color:#fff;
+		}
+		#content{
+			width: 100%;
+			height: 350px;
+		}
+		#content .con1{
+			background: cornflowerblue;
+			height: 100%;
+		}
+		#content .con2{
+			background: mediumslateblue;
+			height: 100%;
+			display: none;
+		}
+		#content .con3{
+			background:blueviolet;
+			height: 100%;
+			display: none;
+		}
+		#content .con4{
+			background:dodgerblue;
+			height: 100%;
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div id="head">
+			<ul>
+				<li>服饰</li>
+				<li>食品</li>
+				<li>母婴</li>
+				<li>电器</li>
+			</ul>
+		</div>
+		<div id="content">
+			<div class="con1">服饰</div>
+			<div class="con2">食品</div>
+			<div class="con3">母婴</div>
+			<div class="con4">电器</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		function TabSwitch(){
+			this.head=document.getElementById("head")
+			this.ul=this.head.getElementsByTagName("ul")[0]
+			this.aLi=this.head.getElementsByTagName("li")
+			this.content=document.getElementById("content")
+			this.aCons=this.content.getElementsByTagName("div")
+			var that=this
+			this.switch=function(){				
+				this.ul.addEventListener("click",function(e){
+					for (var i = 0; i < that.aLi.length; i++) {
+						that.aLi[i].index=i
+						that.aCons[i].style.display="none"
+					}
+					console.log(e.target.index)
+					that.aCons[e.target.index].style.display="block"
+
+				})
+			}
+		}
+		new TabSwitch().switch()
+	</script>
+
+</body>
+</html>

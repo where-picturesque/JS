@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin:0;
+				padding:0;
+			}
+			#menu{
+				width:400px;
+				height:500px;
+				background:#000;
+			}
+			#menu img{
+				display:block;
+				height:200px;
+				margin:0  auto; 
+			}
+			#menu #box{
+				height:100px;
+				background:#222;
+				margin-top:200px;
+				
+			}
+			#menu #box #put{
+				width:300px;
+				height:50px;
+				border:1px solid #555;
+				margin:0 auto;
+				position:relative;
+			}
+			#menu #box #put #squre{
+				position:absolute;
+				width:50px;
+				height:50px;
+				background:#bbb;
+				font:20px/50px "";
+				text-align:center;
+				border-radius: 5px
+			}
+		</style>
+	</head>
+	<body>
+		<div id="menu">
+			<img src="../img/sli.png" id="img" />
+			<div id="box">
+				<div id="put">
+					<div id="squre"></div>
+				</div>
+			</div>
+		</div>
+		<script>
+			var squre=document.getElementById("squre")
+			var box=document.getElementById("box")
+			var menu=document.getElementById("menu")
+			var img=document.getElementById("img")
+			
+			
+			squre.onmousedown=function(e){
+				var e=e||event
+				var dix=e.offsetX
+				var diy=e.offsetY
+				var cx=e.clientX
+				var cy=e.clientY
+				console.log(cx)
+				document.onmousemove=function(e){
+					var e=e||event
+					var x=e.clientX
+					var y=e.clientY
+					if(x-cx >=0&&x-cx<=250)
+					squre.style.left=x-cx +"px"
+					
+				}
+				document.onmouseup=function(e){
+					if(e.clientX-e.offsetX<300){
+						squre.style.left=0
+					}else{
+						box.style.display="none"
+						img.style.display="none"
+						menu.style.backgroundImage="url(../img/black-7.jpg)"
+					}
+					
+					document.onmousemove=null
+					document.onmouseup=null
+				}
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+	*{
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+		#box{
+			width: 800px;
+			height: 120px;overflow: hidden;
+			margin: 50px auto;
+			position: relative;
+		}
+		#box ul{
+			display: flex;
+			position: absolute;
+		}
+		#box ul li img{
+			width: 200px;
+			height: 120px;
+		}
+
+	</style>
+</head>
+<body>
+	<div id="box">
+		<ul>
+			<li><img src="img/black-6.jpg"></li>
+			<li><img src="img/black-9.jpg"></li>
+			<li><img src="img/black-10.jpg"></li>
+			<li><img src="img/love.jpg"></li>
+			<li><img src="img/sf1.jpg"></li>
+			<li><img src="img/tus2.jpg"></li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+	var box=document.getElementById("box")
+		var ul=document.getElementsByTagName("ul")[0]
+		var aLi=ul.getElementsByTagName("li")
+		for (var i = 0; i < 4; i++) {
+			var li = aLi[i].cloneNode(true)
+			ul.appendChild(li)
+		}
+		var speed=-5
+		console.log(aLi[0].offsetWidth*(aLi.length-4))
+		function move(){
+			timer=setInterval(function(){
+				var left=ul.offsetLeft+speed
+				if (left<-aLi[0].offsetWidth*(aLi.length-4)) {
+					left=0
+				}
+				if (left>0) {
+					left=-aLi[0].offsetWidth*(aLi.length-4)
+				}
+				ul.style.left=left+"px"
+			},50)
+		}
+		move()
+	/*	box.onmouseover=function(){
+			clearInterval(timer)
+		}
+		box.onmouseout=function(){
+			move()
+		}*/
+		box.onmousemove=function(e){
+			if ((e.clientX-box.offsetLeft)<box.offsetWidth/2) {
+				speed=-5
+			}else{
+				speed=5
+			}
+		}
+
+	</script>
+
+</body>
+</html>

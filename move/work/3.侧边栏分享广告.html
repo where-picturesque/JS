@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		#box{
+			width:200px;
+			height: 200px;
+			background: red;
+			position: absolute;
+			left: -200px;
+		}
+		#adv{
+			width: 30px;
+			height: 60px;
+			background: yellow;
+			position: absolute;
+			left: 200px;
+			top: 50%;
+			margin-top: -30px;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div id="adv">分享到</div>
+	</div>
+	<script type="text/javascript">
+		var box=document.getElementById("box")
+		var timer
+		box.onmouseover=function(){
+			bufferMove(this,'left',0)
+		}
+		box.onmouseout=function(){
+			bufferMove(this,'left',-200)
+		}
+
+		function getStyle(obj,attr){
+			if (obj.currentStyle) {
+				return obj.currentStyle[attr]
+			}else{
+				return getComputedStyle(obj)[attr]
+			}
+		}
+
+		function bufferMove(obj,attr,end){
+			clearInterval(obj.timer)
+			obj.timer=setInterval(function(){
+				var current
+				if (attr=="opacity") {
+					current=Math.round(getStyle(obj,'opacity')*100)
+				}else{
+					current=parseInt(getStyle(obj,attr))
+				}
+				var speed=(end-current)/5
+				speed=speed>0?Math.ceil(speed):Math.floor(speed)
+				if (end==current) {
+					clearInterval(obj.timer)
+				}
+				if (attr=="opacity") {
+					obj.style.opacity=(current+speed)/100
+					obj.sytle.filter="alpha(opacity="+current+speed+")"
+				}else{
+					obj.style[attr]=current+speed+"px"
+				}
+
+			},50)
+		}
+
+
+
+	</script>
+
+</body>
+</html>

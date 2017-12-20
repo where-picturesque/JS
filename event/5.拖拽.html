@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box {
+				width: 200px;
+				height: 200px;
+				background-color: #FFBE00;
+				position: absolute;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="box"></div>
+		<script>
+			onload = function() {
+				var box = document.getElementById("box");
+				//鼠标按下
+				box.onmousedown = function(evt) {
+					var e = evt || event;
+
+					//计算鼠标位置与div左边和上边的距离
+					var disX = e.clientX - box.offsetLeft;
+					var disY = e.clientY - box.offsetTop;
+					//鼠标移动
+					document.onmousemove = function(evt) {
+						var e = evt || event;
+						
+						box.style.left = e.clientX - disX + "px";
+						box.style.top = e.clientY - disY + "px";
+					}
+					//鼠标松开
+					document.onmouseup = function() {
+						document.onmousemove = null;
+						document.onmouseup = null;
+					}
+				}
+			}
+		</script>
+	</body>
+
+</html>

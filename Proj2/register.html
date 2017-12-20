@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>唯品会网站注册</title>
+		<link rel="stylesheet" type="text/css" href="css/register.css">
+	</head>
+
+	<body>
+		<div id="main" class="margin">
+			<div id="header" class="clear">
+				<a href="index.html" class="logo"></a>
+				<div class="promise"></div>
+			</div>
+			<div id="content">
+				<div class="reg">
+					<div class="reg-top clear">
+						<span class="welcome-reg">欢迎注册</span>
+						<span class="reged">已注册可<a href="login.html">直接登录</a></span>
+					</div>
+
+					<form class="regForm" method="post" action="php/reg.php">
+
+						<div class="phone div-input">
+							<input type="text" class="phone-inp" name="username" placeholder="请输入手机号码" autocomplete="off">
+							<p class="notice">请输入您的11位手机号码</p>
+							<p class="warning">
+								<i class="vipFont if-sigh"></i>
+								<span class="wraning-text"></span>
+							</p>
+							<i class="i-if-success vipFont" style=""></i>
+						</div>
+						<div class="password div-input">
+							<input type="password" class="password-inp" name="password" placeholder="密码由6-20位字母，数字和下划线组合" autocomplete="off">
+							<p class="notice">密码由6-20位字母，数字和下划线组合，区分大小写
+							</p>
+							<p class="warning">
+								<i class="vipFont if-sigh"></i>
+								<span class="wraning-text">密码不能为空</span>
+							</p>
+							<i class="i-if-success vipFont" style=""></i>
+							<div class="pwd-level">
+								<span class="pwd-level-color low"></span>
+								<span class="pwd-level-color middle"></span>
+								<span class="pwd-level-color high"></span>
+								<span class="level-text"></span>
+							</div>
+						</div>
+						<div class="checkpwd div-input">
+							<input type="password" name="checkpwd" placeholder="请再次输入上面的密码" class="checkpwd-inp" autocomplete="off">
+
+							<p class="warning">
+								<i class="vipFont if-sigh"></i>
+								<span class="wraning-text">请输入确认密码</span>
+							</p>
+							<i class="i-if-success vipFont" style=""></i>
+						</div>
+						<div class="checkcode div-input">
+							<input type="text" id="Txtidcode" class="txtVerification" placeholder="请输入验证码" autocomplete="off">
+							<i class="i-if-success vipFont" style=""></i>
+							<!--<button id="idcode"></button>-->
+							<span class="createcode"></span>
+							<p class="warning">请输入验证码</p>
+						</div>
+						<div class="toreg clear">
+							<input type="submit" class="reg-btn" value="立即注册" name="submit" />
+
+							<a class="email-reg">通过邮箱注册</a>
+						</div>
+						<div class="agree">
+							<span class="agree-icon"></span>
+							<label for="agree-icon" class="agree-txt">
+								我已阅读并接受
+								<a href="#">《唯品会服务条款》</a>
+								<a href="#">《隐私条款》</a>
+								等
+							</label>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="footer">
+				<div class="copyright">Copyright 2008-2017 vip.com，All Rights Reserved ICP证：粤 B2-20080329</div>
+			</div>
+		</div>
+		<script src="js/require.js" data-main="js/register-main.js" type="text/javascript" charset="utf-8" defer async="true"></script>
+	</body>
+
+</html>

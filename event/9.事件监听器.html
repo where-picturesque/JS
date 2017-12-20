@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<button>OK</button>
+		<script>
+			var test=function(){
+				console.log("点击按钮")
+			}
+			document.querySelector("button").addEventListener("click",test,false)
+			document.querySelector("button").addEventListener("click",function(){console.log("我是第二个click事件")},false)
+			document.querySelector("button").removeEventListener("click",function(){console.log("我是第二个click事件")})
+		
+		</script>
+	</body>
+</html>

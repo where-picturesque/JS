@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			img{
+				position:absolute;
+			}
+		</style>
+	</head>
+	<body>
+		<img src="../img/1.gif"  />
+		<script>
+			
+			var img=document.querySelector("img")
+			var routes=[]
+			var index=0
+			document.onmousedown=function(e){
+				routes.push({
+					x:e.clientX,
+					y:e.clientY
+				})
+				document.onmousemove=function(e){
+					routes.push({
+						x: e.clientX,
+						y: e.clientY
+					})
+				}
+				document.onmouseup=function(){
+					document.onmousemove=null
+					var timer=setInterval(function(){
+						img.src="../img/2.gif"
+						index++
+						img.style.left=routes[index].x +"px"
+						img.style.top=routes[index].y +"px"
+						if(index>=routes.length-1){
+							img.src="../img/1.gif"
+							routes=[]
+							clearInterval(timer)
+	
+						}
+					},50)
+						
+//				
+				}
+			}
+			
+		</script>
+	</body>
+</html>

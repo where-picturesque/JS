@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		#box1{
+			width:100px;
+			height: 100px;
+			background: red;
+			position: absolute;
+			left: 50px;
+			top: 500px;
+		}
+		#box2{
+			width:100px;
+			height: 100px;
+			background: blue;
+			position: absolute;
+			top: 300px;
+			left: 1100px;
+		}
+	</style>
+</head>
+<!-- y = Ax^2 + Bx + C -->
+<body>
+	<div id="box1"></div>
+	<div id="box2"></div>
+	<script type="text/javascript">
+		var box1=document.getElementById("box1")
+		var box2=document.getElementById("box2")
+		var l2=box2.offsetLeft
+		var current={
+			x:box1.offsetLeft,
+			y:box1.offsetTop
+		}
+		var target={
+			x:box2.offsetLeft-current.x,
+			y:box2.offsetTop-current.y
+		}
+		var a=0.0014
+		var b=(target.y-a*(target.x*target.x))/target.x
+		var x=0
+		// l2*l2-current.x*current.x
+		var timer=setInterval(function(){
+			x+=10;
+			var y=a*x*x+b*x
+			if (x==target.x) {
+				clearInterval(timer)
+			}
+			box1.style.left=x+current.x+"px"
+			box1.style.top=y+current.y+"px"
+		},30)
+
+
+	</script>
+
+</body>
+</html>

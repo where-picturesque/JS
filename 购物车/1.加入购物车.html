@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			ul{
+				overflow: hidden;
+			}
+			ul li{
+				float:left;
+				margin:10px 30px;
+			}
+			img{
+				width:100px;
+				height:100px;
+			}
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li data="1">
+				<img src="img/1.jpg" />
+				<p>巧克力味曲奇</p>
+				￥<p>30.5</p>
+				<button>加入购物车</button>
+			</li>
+			<li data="2">
+				<img src="img/2.jpg" />
+				<p>夏威夷果</p>
+				￥<p>28.88</p>
+				<button>加入购物车</button>
+			</li>
+			<li data="3">
+				<img src="img/3.jpg" />
+				<p>薯片</p>
+				￥<p>24.0</p>
+				<button>加入购物车</button>
+			</li>
+			<li data="4">
+				<img src="img/4.jpg" />
+				<p>长鼻王</p>
+				￥<p>18.9</p>
+				<button>加入购物车</button>
+			</li>
+		</ul>
+		<a href="2.结算.html">结算</a>
+		<script>
+			var uu=document.querySelector("ul")
+			var cardList=[]
+			uu.addEventListener("click",addToCar)
+			function addToCar(e){
+				var li=e.target.parentNode
+//				console.log(li)
+				var liId=li.getAttribute("data")
+				for (var i=0;i<cardList.length;i++) {
+					if (liId==cardList[i].gid) {
+						cardList[i].num++
+						break;
+					}
+				}
+				if(i==cardList.length){
+				
+					var obj={}
+					obj.gid=liId
+					obj.imgsrc=li.children[0].src
+					obj.name=li.children[1].innerHTML
+					obj.price=li.children[2].innerHTML
+					obj.num=1
+					cardList.push(obj)
+	//				console.log(cardList)					
+				}
+				console.log(cardList)
+				console.log(JSON.stringify(cardList))
+//				转成JSON格式
+				document.cookie="cardList="+JSON.stringify(cardList)
+			}
+		</script>
+	</body>
+</html>

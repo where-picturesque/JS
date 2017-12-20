@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		.draw{
+			width:2px;height:2px;background:red;position:absolute;
+		}
+	</style>
+</head>
+<body>
+	<script type="text/javascript">
+		document.onmousedown=function(e){
+			var e=e||event
+			var shortx=e.offsetX
+			var shorty=e.offsetY
+			document.onmousemove=function(e){
+				var e=e||event
+				var div = document.createElement("div")
+				div.className="draw"
+				div.style.left=e.clientX+"px"
+				div.style.top=e.clientY+"px"
+				document.body.appendChild(div)
+			}
+			document.onmouseup=function(){
+				document.onmousemove=null;
+				document.onmouseup=null;
+			}
+		}
+	</script>
+
+</body>
+</html>

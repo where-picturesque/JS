@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		#box{
+			width: 100px;
+			height: 100px;
+			background: red;
+			border-radius: 50%;
+			position: absolute;
+
+		}
+		.route{
+			width: 2px;
+			height: 2px;
+			background: red;
+			position: absolute;
+		}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+	<script type="text/javascript">
+		var box=document.getElementById("box")
+		var timer
+		var speedx=0
+		var speedy=0
+		var prex
+		var prey
+		box.onmousedown=function(e){
+			var e=e||event
+			prex=e.clientX
+			prey=e.clientY
+			document.onmousemove=function(e){
+				var e=e||event
+				var route=document.createElement("div")
+				route.className="route"
+				route.style.left=e.clientX+"px"
+				route.style.top=e.clientY+"px"
+				document.body.appendChild(route)
+				speedx=e.clientX-prex
+				speedy=e.clientY-prey
+				prex=e.clientX
+				prey=e.clientY
+				box.style.left=e.clientX+"px"
+				box.style.top=e.clientY+"px"
+
+			}
+			document.onmouseup=function(e){
+				document.onmousemove=null;
+				document.onmouseup=null;
+				move();
+			}
+			
+		}
+		function move(){
+			clearInterval(timer)
+			timer=setInterval(function(e){
+				speedy+=4
+				var top=box.offsetTop+speedy
+				var left=box.offsetLeft+speedx
+				if (top>=document.documentElement.clientHeight-box.offsetHeight) {
+					top=document.documentElement.clientHeight-box.offsetHeight
+					speedy*=-.9
+					speedx*=.9
+				}
+				if (top<=0) {
+					top=0;
+					speedy=-speedy
+				}
+				if (left<=0) {
+					left=0
+					speedx=-speedx
+				}
+				if (left>document.documentElement.clientWidth-box.offsetWidth) {
+					speedx=-speedx
+					left=document.documentElement.clientWidth-box.offsetWidth
+				}
+				if (Math.abs(speedx)<1) {
+					speedx=0
+				}
+				if (Math.abs(speedy)<1) {
+					speedy=0
+				}
+				if (speedx==0&& speedy==0 &&top==document.documentElement.clientHeight-box.offsetHeight) {
+					console.log("清除定时器")
+					clearInterval(timer)
+				}
+				box.style.top=top+"px"
+				box.style.left=left+"px"
+
+			},30)
+		}
+
+	</script>
+
+</body>
+</html>

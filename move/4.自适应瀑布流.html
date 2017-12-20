@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+			*{
+				padding:0px;margin:0px;
+				list-style: none;
+			}
+			
+			.clear:after{
+				content: "";
+				display: block;
+				clear: both;
+			}
+			html,body{
+				width: 100%;
+			}
+			#box{
+				width: 100%;
+			}
+			#box ul{
+				width: 100%;
+			}
+			ul li{
+				float: left;
+				
+			}
+			ul li div{
+				margin: 5px 0;
+			}
+			
+			ul li img{
+				width: 230px;
+				display: block;
+			}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<ul class="clear">
+		</ul>
+	</div>
+	<script src="public.js"></script>
+	<script type="text/javascript">
+		var arr=[
+				{"src":"img1/1.jpg","alt":"1","height":"343px"},
+				{"src":"img1/2.jpg","alt":"2","height":"300px"},
+				{"src":"img1/3.jpg","alt":"3","height":"230px"},
+				{"src":"img1/4.jpg","alt":"4","height":"230px"},
+				{"src":"img1/5.jpg","alt":"5","height":"306px"},
+				{"src":"img1/6.jpg","alt":"6","height":"333px"},
+				{"src":"img1/7.jpg","alt":"7","height":"335px"},
+				{"src":"img1/8.jpg","alt":"8","height":"172px"},
+				{"src":"img1/9.jpg","alt":"9","height":"172px"},
+				{"src":"img1/10.jpg","alt":"10","height":"345px"},
+				{"src":"img1/11.jpg","alt":"11","height":"340px"},
+				{"src":"img1/12.jpg","alt":"12","height":"153px"},
+				{"src":"img1/13.jpg","alt":"13","height":"345px"},
+				{"src":"img1/14.jpg","alt":"14","height":"316px"},
+				{"src":"img1/15.jpg","alt":"15","height":"327px"},
+				{"src":"img1/16.jpg","alt":"16","height":"345px"},
+				{"src":"img1/17.jpg","alt":"17","height":"172px"},
+				{"src":"img1/18.jpg","alt":"18","height":"282px"},
+				{"src":"img1/19.jpg","alt":"19","height":"224px"},
+				{"src":"img1/20.jpg","alt":"20","height":"344px"}
+		];
+		var ul=document.querySelector("ul")
+		var body=document.querySelector("body")
+//		var imgWidth=getstyle()
+		window.onload=window.onresize=function(){
+			var clientWidth=document.documentElement.clientWidth
+			var num=Math.floor(clientWidth/235)
+			ul.innerHTML=""
+			console.log(num)
+			for (var i = 0; i < num; i++) {
+				var li=document.createElement("li")
+				ul.appendChild(li)
+			}
+//			ul.style.width=num*(235)+"px"
+//			console.log(num*235)
+			var aLi=document.getElementsByTagName('li');//类数组
+
+			function getMinLiIndex(arr){
+				var minIndex=0
+				for (var i = 0; i < arr.length; i++) {
+					if(arr[i].offsetHeight<arr[minIndex].offsetHeight){
+						minIndex=i;
+					}
+				}
+				return minIndex;
+			}
+			function createImg(){
+				for (var i = 0; i < arr.length; i++) {
+					var div=document.createElement("div")
+					var img=document.createElement("img")
+					img.src=arr[i].src
+					img.style.height=arr[i].height;
+					div.appendChild(img);					
+					aLi[getMinLiIndex(aLi)].appendChild(div);
+					var gap=body.offsetWidth-num*img.offsetWidth
+					var marginx=Math.floor(gap/(2*num))					
+					div.style.marginLeft=marginx+"px"
+					div.style.marginRight=marginx+"px"
+					console.log(div.style.marginRight)
+					
+				}
+			}
+			createImg();
+
+			window.onscroll=function(){//懒加载
+					var ch=document.documentElement.clientHeight;
+					var scrolltop=document.documentElement.scrollTop||document.body.scrollTop;
+					var minheight=aLi[getMinLiIndex(aLi)].offsetHeight;//最小高度的li
+					if(minheight<ch+scrolltop){
+						createImg();
+					}
+			}
+		}
+	</script>
+
+</body>
+</html>
